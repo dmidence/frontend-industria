@@ -2,6 +2,7 @@ import React from "react";
 import "./landing.scss";
 import Navbar from "../../components/Navbar";
 import section1 from "../../assets/img/boybooks.jpg";
+import section2 from "../../assets/img/boyssmartphone.jpg";
 export default function Landing() {
   return (
     <>
@@ -25,12 +26,17 @@ export default function Landing() {
             <img className="img-fluid" src={section1} alt="" />
           </section>
         </section>
-        <section className="main-section bg-warning row m-0">
-          <section className="first-child-section-two bg-info col-5">
-            child section 1
+        <section className="main-section  row m-0">
+          <section className="first-child-section-two  col-5">
+            <img className="img-fluid" src={section2} alt="" />
           </section>
-          <section className="second-child-section-two col-7">
-            el child dos
+          <section className="second-child-section-two col-7 d-flex flex-column justify-content-center align-items-center">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
           </section>
         </section>
         <section className="main-section bg-success row m-0">
