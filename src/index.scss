@@ -3,3 +3,21 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+
+.bg-gray{
+  background-color: rgb(235, 235, 235);
+}
+
+.w-full{
+  width: 100%;
+}
+
+.cursor-pointer{
+  cursor: pointer !important;
+  .option_item{
+    &:hover{
+      color: red;
+    }
+  }
+}
