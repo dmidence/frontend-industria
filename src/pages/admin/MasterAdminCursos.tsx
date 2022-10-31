@@ -2,7 +2,7 @@ import React,{ReactElement, useState} from 'react'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import AdminNavbar from '../../components/Navbar/AdminNavbar'
 
-export default function MasterAdmin() {
+export default function MasterAdminCursos() {
     let initialWidth = 80;
     const [fullView, setfullView] = useState<boolean>(false);
     const [width, setwidth] = useState<number>(initialWidth);
@@ -21,7 +21,7 @@ export default function MasterAdmin() {
       <div style={{ width: `${width}%`, transition:"width .3s" }} className="bg-gray m-0 p-0">
         <AdminNavbar handleWidth={handleWidth}></AdminNavbar>
         <div className="p-3">
-          <div className="bg-white p-3" style={{minHeight:"85vh"}}>Profesores</div>
+          <div className="bg-white p-3" style={{minHeight:"85vh"}}>Cursos</div>
         </div>
       </div>
     </div>

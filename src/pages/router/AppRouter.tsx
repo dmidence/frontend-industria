@@ -5,14 +5,16 @@ import { PublicRoute } from './PublicRoute'
 import { PrivateRoute } from './PrivateRoute'
 
 // Routes
-import Landing from '../landing/landing'
-import MasterAdmin from '../admin/MasterAdmin'
+import Landing from '../landing/landing';
+import MasterAdmin from '../admin/MasterAdmin';
+import MasterAdminCursos from '../admin/MasterAdminCursos';
+import MasterAdminStudents from '../admin/MasterAdminStudents';
 import Login from '../login/Login';
 export const AppRouter = () => {
 
 
   let checking = false;
-  let id = 0;
+  let id = 1;
 
   if (checking) {
     return <h1>Load Screen</h1>
@@ -33,13 +35,23 @@ export const AppRouter = () => {
             isAuthenticated={!!id}
           />
           <PrivateRoute
-            path="/"
-            component={MasterAdmin}
+            path="/admin-courses"
+            component={MasterAdminCursos}
+            isAuthenticated={!!id}
+          />
+          <PrivateRoute
+            path="/admin-students"
+            component={MasterAdminStudents}
             isAuthenticated={!!id}
           />
           <Route path="landing2"
             component={ Landing}
         />
+          <PrivateRoute
+            path="/"
+            component={MasterAdmin}
+            isAuthenticated={!!id}
+          />
           <Redirect to="/" />
         </Switch>
       </div>

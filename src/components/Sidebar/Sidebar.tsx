@@ -1,20 +1,68 @@
-import React from 'react'
-import style from './Sidebar.module.scss'
-import logo from '../../assets/img/logo3.png'
-export default function Sidebar({width,fullView}:{width:number,fullView:boolean}) {
-  let adminRoutes = [
+import React from 'react';
+import style from './Sidebar.module.scss';
+import logo from '../../assets/img/logo3.png';
+import { Link } from 'react-router-dom';
+
+export default function Sidebar({
+  width,
+  fullView,
+}: {
+  width: number
+  fullView: boolean
+}) {
+  let adminRoutesMaster = [
     {
       label: 'Profesores',
       icon: <i className="fa-solid fa-chalkboard-user fa-xl"></i>,
+      path: '/',
     },
-    { label: 'Cursos', icon: <i className="fas fa-book-open fa-xl"></i> },
-    { label: 'Estudiantes', icon: <i className="fa-solid fa-users fa-xl"></i> },
+    {
+      label: 'Cursos',
+      icon: <i className="fas fa-book-open fa-xl"></i>,
+      path: '/admin-courses',
+    },
+    {
+      label: 'Estudiantes',
+      icon: <i className="fa-solid fa-users fa-xl"></i>,
+      path: '/admin-students',
+    },
   ]
+
+  let adminRoutesTeacher = [
+    {
+      label: 'Cursos',
+      icon: <i className="fa-solid fa-chalkboard-user fa-xl"></i>,
+      path: '/admin-courses',
+    },
+    {
+      label: 'Perfil',
+      icon: <i className="fas fa-book-open fa-xl"></i>,
+      path: '/teacher-profile',
+    },
+  ]
+
+  let adminRoutesStudent = [
+    {
+      label: 'Mis Cursos',
+      icon: <i className="fa-solid fa-chalkboard-user fa-xl"></i>,
+      path: '/admin-courses',
+    },
+    {
+      label: 'Perfil',
+      icon: <i className="fas fa-book-open fa-xl"></i>,
+      path: '/teacher-profile',
+    },
+  ]
+  let userRoutes = [...adminRoutesMaster];
   return (
     <aside
       className={`d-flex flex-column flex-shrink-0 p-3 text-white main-admin-sidebar  p-0 ${style.sidebar__bg} `}
-      style={{ width: `${100-width}%`, height: '100vh' , marginLeft:`-${fullView ?`${100-width}%`:0}`, transition:"margin .3s"}}
-
+      style={{
+        width: `${100 - width}%`,
+        height: '100vh',
+        marginLeft: `-${fullView ? `${100 - width}%` : 0}`,
+        transition: 'margin .3s',
+      }}
     >
       <a
         href="/"
@@ -25,8 +73,8 @@ export default function Sidebar({width,fullView}:{width:number,fullView:boolean}
       </a>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
-        {adminRoutes.map(({ label, icon }) => (
-          <SidebarItems label={label} icon={icon} />
+        {userRoutes.map(({ label, icon,path }, index) => (
+          <SidebarItems label={label} icon={icon} path={path} key={index}/>
         ))}
       </ul>
       <hr />
@@ -62,12 +110,12 @@ export default function Sidebar({width,fullView}:{width:number,fullView:boolean}
   )
 }
 
-function SidebarItems({ label, icon }: { label: string; icon: any }) {
+function SidebarItems({ label, icon, path }: { label: string; icon: any ,path:string}) {
   return (
     <li>
-      <a href="#" className="nav-link text-white d-flex  align-items-center">
+      <Link to={`${path}`} className="nav-link text-white d-flex  align-items-center">
         {icon} <span className="ms-2">{label}</span>
-      </a>
+      </Link>
     </li>
   )
 }
