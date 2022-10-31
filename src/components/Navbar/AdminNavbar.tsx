@@ -36,7 +36,7 @@ export default function AdminNavbar({handleWidth}:{handleWidth:()=>void}) {
         />
         <strong className="ps-2 text-dark">Nombre de Usuario</strong>
       </a>
-      <ul
+      {/* <ul
         className="dropdown-menu dropdown-menu-dark text-small shadow"
         aria-labelledby="dropdownUser1"
       >
@@ -45,7 +45,7 @@ export default function AdminNavbar({handleWidth}:{handleWidth:()=>void}) {
             Cerrar Sesion
           </a>
         </li>
-      </ul>
+      </ul> */}
     </div>
   </div>
 </nav>

@@ -19,6 +19,9 @@ export default function MasterAdmin() {
       <Sidebar width={initialWidth} fullView={fullView}></Sidebar>
       <div style={{ width: `${width}%`, transition:"width .3s" }} className="bg-gray m-0 p-0">
         <AdminNavbar handleWidth={handleWidth}></AdminNavbar>
+        <div className="p-3">
+          <div className="bg-white p-3" style={{minHeight:"85vh"}}>Outlet</div>
+        </div>
       </div>
     </div>
   )
