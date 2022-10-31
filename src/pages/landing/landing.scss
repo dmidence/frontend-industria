@@ -1,8 +1,8 @@
 @import "../../colors.scss";
 
 .main-navbar {
-  background-color: $primary-custom-color;
-  height: 10vh;
+  background-color: $back-custom-color;
+  // height: 10vh;
   width: 100%;
   max-width: 100%;
 }
@@ -15,4 +15,9 @@
 .main-footer {
   height: 30vh;
   width: 100%;
+}
+
+.img-brand {
+  width: 60px;
+  height: 60px;
 }
