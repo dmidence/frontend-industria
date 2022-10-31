@@ -1,24 +1,35 @@
 import React from "react";
 import "./landing.scss";
 import Navbar from "../../components/Navbar";
+import section1 from "../../assets/img/boybooks.jpg";
 export default function Landing() {
   return (
     <>
       <Navbar></Navbar>
       <div className="container-fluid m-0 p-0">
-        <section className="main-section bg-secondary row m-0">
-          <section className="first-child-section-one bg-info col-6">
-            child section 1
+        <section className="main-section  row m-0">
+          <section className="first-child-section-one col-7 d-flex flex-column justify-content-center align-items-center">
+            <div className="section-body p-5">
+              <h2>Nombre App</h2>
+              <br />
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+              <button className="btn btn-detail">un boton</button>
+            </div>
           </section>
-          <section className="second-child-section-one col-6">
-            el child dos
+          <section className="second-child-section-one col-5">
+            <img className="img-fluid" src={section1} alt="" />
           </section>
         </section>
         <section className="main-section bg-warning row m-0">
-          <section className="first-child-section-two bg-info col-6">
+          <section className="first-child-section-two bg-info col-5">
             child section 1
           </section>
-          <section className="second-child-section-two col-6">
+          <section className="second-child-section-two col-7">
             el child dos
           </section>
         </section>

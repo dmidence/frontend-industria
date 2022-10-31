@@ -21,3 +21,12 @@
   width: 60px;
   height: 60px;
 }
+
+.btn-detail {
+  background-color: $detail-custom-color;
+}
+
+.btn-detail:hover {
+  background-color: $back-custom-color;
+  color: white;
+}
