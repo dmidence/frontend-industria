@@ -1,3 +1,18 @@
-.test {
-  color: aquamarine;
+@import "../../colors.scss";
+
+.main-navbar {
+  background-color: $primary-custom-color;
+  height: 10vh;
+  width: 100%;
+  max-width: 100%;
+}
+
+.main-section {
+  min-height: 50vh;
+  width: 100%;
+}
+
+.main-footer {
+  height: 30vh;
+  width: 100%;
 }
