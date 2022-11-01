@@ -22,15 +22,15 @@ export default function Landing() {
               <button className="btn btn-detail">un boton</button>
             </div>
           </section>
-          <section className="second-child-section-one col-5">
+          <section className="second-child-section-one col-5 p-5">
             <img className="img-fluid" src={section1} alt="" />
           </section>
         </section>
         <section className="main-section  row m-0">
-          <section className="first-child-section-two  col-5">
+          <section className="first-child-section-two  col-5 p-5">
             <img className="img-fluid" src={section2} alt="" />
           </section>
-          <section className="second-child-section-two col-7 d-flex flex-column justify-content-center align-items-center">
+          <section className="second-child-section-two col-7 d-flex flex-column justify-content-center align-items-center p-5">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
