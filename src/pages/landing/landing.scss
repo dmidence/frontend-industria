@@ -30,3 +30,24 @@
   background-color: $back-custom-color;
   color: white;
 }
+
+.scale-hover:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  box-shadow: 23px 22px 16px 8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 23px 22px 16px 8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 23px 22px 16px 8px rgba(0, 0, 0, 0.75);
+}
+.scale-hover {
+  transition: all 0.3s;
+}
+.scale-hover2:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  box-shadow: -17px 18px 16px 8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -17px 18px 16px 8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -17px 18px 16px 8px rgba(0, 0, 0, 0.75);
+}
+.scale-hover2 {
+  transition: all 0.3s;
+}

@@ -23,12 +23,16 @@ export default function Landing() {
             </div>
           </section>
           <section className="second-child-section-one col-5 p-5">
-            <img className="img-fluid" src={section1} alt="" />
+            {/* <div className="overflow-hidden"> */}
+            <img className="img-fluid scale-hover" src={section1} alt="" />
+            {/* </div> */}
           </section>
         </section>
         <section className="main-section  row m-0">
           <section className="first-child-section-two  col-5 p-5">
-            <img className="img-fluid" src={section2} alt="" />
+            {/* <div className="overflow-hidden"> */}
+            <img className="img-fluid scale-hover2" src={section2} alt="" />
+            {/* </div> */}
           </section>
           <section className="second-child-section-two col-7 d-flex flex-column justify-content-center align-items-center p-5">
             <p>
