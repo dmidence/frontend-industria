@@ -9,6 +9,7 @@ import Landing from '../landing/landing';
 import MasterAdmin from '../admin/MasterAdmin';
 import MasterAdminCursos from '../admin/MasterAdminCursos';
 import MasterAdminStudents from '../admin/MasterAdminStudents';
+import MasterAdminAdmin from '../admin/MasterAdminAdmin';
 import Login from '../login/Login';
 export const AppRouter = () => {
 
@@ -42,6 +43,11 @@ export const AppRouter = () => {
           <PrivateRoute
             path="/admin-students"
             component={MasterAdminStudents}
+            isAuthenticated={!!id}
+          />
+          <PrivateRoute
+            path="/admin-admin"
+            component={MasterAdminAdmin}
             isAuthenticated={!!id}
           />
           <Route path="landing2"

@@ -12,6 +12,11 @@ export default function Sidebar({
 }) {
   let adminRoutesMaster = [
     {
+      label: 'Administradores',
+      icon: <i className="fa-solid fa-user-plus fa-xl"></i>,
+      path: '/admin-admin',
+    },
+    {
       label: 'Profesores',
       icon: <i className="fa-solid fa-chalkboard-user fa-xl"></i>,
       path: '/',
@@ -59,7 +64,7 @@ export default function Sidebar({
       className={`d-flex flex-column flex-shrink-0 p-3 text-white main-admin-sidebar  p-0 ${style.sidebar__bg} `}
       style={{
         width: `${100 - width}%`,
-        height: '100vh',
+        minHeight: '100vh',
         marginLeft: `-${fullView ? `${100 - width}%` : 0}`,
         transition: 'margin .3s',
       }}
@@ -93,7 +98,7 @@ export default function Sidebar({
             height="32"
             className="rounded-circle me-2"
           />
-          <strong>mdo</strong>
+          <strong>Nombre de Usuario</strong>
         </a>
         <ul
           className="dropdown-menu dropdown-menu-dark text-small shadow"

@@ -3,7 +3,7 @@ import Sidebar from '../../components/Sidebar/Sidebar'
 import AdminNavbar from '../../components/Navbar/AdminNavbar'
 import AdminFooter from '../../components/Footer/AdminFooter'
 
-export default function MasterAdminStudents() {
+export default function MasterAdminAdmin() {
   let initialWidth = 80
   const [fullView, setfullView] = useState<boolean>(false)
   const [width, setwidth] = useState<number>(initialWidth)
@@ -37,7 +37,7 @@ export default function MasterAdminStudents() {
             style={{ minHeight: '85vh' }}
           >
             <div className="d-flex justify-content-between align-items-center">
-              <h2 className="text-secondary">Estudiantes</h2>
+              <h2 className="text-secondary">Cursos</h2>
               <div>
                 <span className="px-1">
                   <button className="btn btn-primary"><i className="fa-solid fa-plus"></i></button>
