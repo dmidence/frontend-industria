@@ -2,8 +2,7 @@ import React, { ReactElement, useState } from 'react'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import AdminNavbar from '../../components/Navbar/AdminNavbar'
 import AdminFooter from '../../components/Footer/AdminFooter'
-import useModal from '../../components/Modal/useModal'
-import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom'
 
 export default function MasterAdmin() {
   let initialWidth = 80
@@ -24,25 +23,12 @@ export default function MasterAdmin() {
     { nombre: 'Curso 2', detalle: 'Detalle 2' },
     { nombre: 'Curso 3', detalle: 'Detalle 3' },
     { nombre: 'Curso 4', detalle: 'Detalle 4' },
+    { nombre: 'Curso 5', detalle: 'Detalle 5' },
+    { nombre: 'Curso 6', detalle: 'Detalle 6' },
+    { nombre: 'Curso 7', detalle: 'Detalle 7' },
+    { nombre: 'Curso 8', detalle: 'Detalle 8' },
   ]
 
-  let { modal: createModal, openModal: openCreateModal } = useModal({
-    title: 'Crear Maestro',
-    body: '',
-  })
-  let { modal: updateModal, openModal: updateCreateModal } = useModal({
-    title: 'Editar Maestro',
-    body: '',
-  })
-
-  const handleDelete = (element: any) => {
-    Swal.fire({
-      title: 'Eliminar',
-      text: `Eliminar el elemento ${element}`,
-      icon: 'error',
-      confirmButtonText: 'Eliminar',
-    })
-  }
   return (
     <>
       <div className="d-flex">
@@ -58,61 +44,33 @@ export default function MasterAdmin() {
               style={{ minHeight: '85vh' }}
             >
               <div className="d-flex justify-content-between align-items-center">
-                <h2 className="text-secondary">Profesores</h2>
-                <div>
-                  <span className="px-1">
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => {
-                        openCreateModal()
-                      }}
-                    >
-                      <i className="fa-solid fa-plus"></i>
-                    </button>
-                  </span>
-                </div>
+                <h2 className="text-secondary">Mis Cursos</h2>
               </div>
               <hr />
-              <table className="table table-hover ">
-                <thead className="bg-dark text-white">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Curso</th>
-                    <th scope="col">Detalles</th>
-                    <th scope="col">Opciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <>
-                    {cursos.map(({ nombre, detalle }, index) => (
-                      <tr>
-                        <th scope="row">{index}</th>
-                        <td>{nombre}</td>
-                        <td>{detalle}</td>
-                        <td>
-                          <div className="d-flex justify-content-around align-items-center">
-                            <i
-                              className="fa-solid fa-pen-to-square cursor-pointer text-success"
-                              onClick={() => {
-                                updateCreateModal()
-                              }}
-                            ></i>
-                            <i
-                              className="fa-solid fa-trash cursor-pointer text-danger"
-                              onClick={() => {
-                                handleDelete(index)
-                              }}
-                            ></i>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </>
-                </tbody>
-              </table>
+              <div className="d-flex flex-wrap justify-content-around">
+
+              {cursos.map((curso, index) => (
+                <Link to={`/home-student-course/course/${index}`}style={{ width: '30%' }}>
+                  <div className="card mt-4 cursor-pointer text-dark" >
+                  <img
+                    className="card-img-top"
+                    src="https://th.bing.com/th/id/R.4ff4501d43e60358523ff251a0d35ae9?rik=lbKTUlrf6TNMjg&pid=ImgRaw&r=0"
+                    alt="Card image cap"
+                    />
+                  <div className="card-body">
+                    <h5 className="card-title">Card title</h5>
+                    <p className="card-text">
+                      Some quick example text to build on the card title and
+                      make up the bulk of the card's content.
+                    </p>
+                  </div>
+                </div>
+                </Link>
+              ))}
+              </div>
               <nav
                 aria-label="..."
-                className="w-full d-flex justify-content-end"
+                className="w-full d-flex justify-content-center"
               >
                 <ul className="pagination">
                   <li className="page-item ">
@@ -148,8 +106,6 @@ export default function MasterAdmin() {
           <AdminFooter></AdminFooter>
         </div>
       </div>
-      {createModal}
-      {updateModal}
     </>
   )
 }

@@ -50,7 +50,7 @@ export default function Sidebar({
     {
       label: 'Mis Cursos',
       icon: <i className="fa-solid fa-chalkboard-user fa-xl"></i>,
-      path: '/admin-courses',
+      path: '/home-student',
     },
     {
       label: 'Perfil',
@@ -58,7 +58,7 @@ export default function Sidebar({
       path: '/teacher-profile',
     },
   ]
-  let userRoutes = [...adminRoutesMaster];
+  let userRoutes = [...adminRoutesStudent];
   return (
     <aside
       className={`d-flex flex-column flex-shrink-0 p-3 text-white main-admin-sidebar  p-0 ${style.sidebar__bg} `}
