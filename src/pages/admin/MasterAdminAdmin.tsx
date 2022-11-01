@@ -5,7 +5,7 @@ import AdminFooter from '../../components/Footer/AdminFooter'
 import useModal from '../../components/Modal/useModal'
 import Swal from 'sweetalert2'
 
-export default function MasterAdmin() {
+export default function MasterAdminAdmin() {
   let initialWidth = 80
   const [fullView, setfullView] = useState<boolean>(false)
   const [width, setwidth] = useState<number>(initialWidth)
@@ -27,17 +27,17 @@ export default function MasterAdmin() {
   ]
 
   let { modal: createModal, openModal: openCreateModal } = useModal({
-    title: 'Crear Maestro',
+    title: 'Crear Administrador',
     body: '',
   })
   let { modal: updateModal, openModal: updateCreateModal } = useModal({
-    title: 'Editar Maestro',
+    title: 'Editar Administrador',
     body: '',
   })
 
   const handleDelete = (element: any) => {
     Swal.fire({
-      title: 'Eliminar',
+      title: 'Eliminar Administrador',
       text: `Eliminar el elemento ${element}`,
       icon: 'error',
       confirmButtonText: 'Eliminar',
@@ -58,7 +58,7 @@ export default function MasterAdmin() {
               style={{ minHeight: '85vh' }}
             >
               <div className="d-flex justify-content-between align-items-center">
-                <h2 className="text-secondary">Profesores</h2>
+                <h2 className="text-secondary">Administradores</h2>
                 <div>
                   <span className="px-1">
                     <button

@@ -6,13 +6,16 @@
 
 
 .bg-gray{
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(243, 243, 243);
 }
 
 .w-full{
   width: 100%;
 }
-
+ 
+.border-gray{
+  border-color: rgb(170, 170, 170);
+}
 .cursor-pointer{
   cursor: pointer !important;
   .option_item{
@@ -21,3 +24,4 @@
     }
   }
 }
+
