@@ -3,29 +3,10 @@ import React from 'react'
 export default function RecursosSection({recursos}:{recursos:any}) {
   return (
     <>
-      <nav aria-label="..." className="w-full d-flex justify-content-center">
-        <ul className="pagination w-full d-flex justify-content-around">
-          <li className="page-item">
-            <a className="page-link" href="#">
-              Unidad 1 <span className="sr-only">(current)</span>
-            </a>
-          </li>
-          <li className="page-item active">
-            <a className="page-link" href="#">
-              Unidad 2
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              Unidad 3
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <hr />
+      
       <h6>Asignaciones:</h6>
       <section
-        className="asignaciones w-full bg-white d-flex justify-content-around"
+        className="asignaciones w-full bg-white d-flex justify-content-around p-4"
         style={{ minHeight: '50vh' }}
       >
         {recursos.map((recurso:any) => (

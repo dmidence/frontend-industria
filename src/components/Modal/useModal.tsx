@@ -10,6 +10,7 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     width: "600px",
+    padding:0
   },
 };
 Modal.setAppElement("#root");
@@ -47,16 +48,17 @@ export default function useModal({
           <div className="d-flex justify-content-between align-items-center w-full">
             <h2
               ref={(_subtitle) => (subtitle = _subtitle)}
-              className="text-dark"
+              className="text-white bg-back w-100 p-4 d-flex justify-content-between align-items-center"
             >
               {title}
-            </h2>
-            <span
-              className="text-danger cursor-pointer"
+              <span
+              className="text-white cursor-pointer"
               onClick={() => closeModal()}
             >
-              <i className="fa-solid fa-x fa-xl"></i>
+              <i className="fa-solid fa-x "></i>
             </span>
+            </h2>
+            
           </div>
           <div className="modal-content">
             <div className="modal-body">{body}</div>
