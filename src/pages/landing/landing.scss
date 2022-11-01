@@ -1,28 +1,36 @@
-@import "../../colors.scss";
+@import '../../colors.scss';
 
+body {
+  background-color: #fff;
+}
 .main-navbar {
   position: fixed;
-  background-color: rgba($back-custom-color, 0.9);
+  // background-color: rgba($back-custom-color, 0.9);
+  background-color: white;
+  color: $back-custom-color;
   height: 80px;
   width: 100%;
   max-width: 100%;
-  box-shadow: -1px 16px 30px -13px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: -1px 16px 30px -13px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: -1px 16px 30px -13px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 9px 14px -11px rgba(106,202,219,0.75);
+-webkit-box-shadow: 0px 9px 14px -11px rgba(106,202,219,0.75);
+-moz-box-shadow: 0px 9px 14px -11px rgba(106,202,219,0.75);
   z-index: 10000;
 }
 
 .main-bg {
-  background: url("../../assets/img/c4.jpg");
+  background: url('../../assets/img/c4.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 .main-section {
   padding-top: 80px;
   min-height: 50vh;
-  width: 100%;
+  width: 80%;
 }
 
+.margin-landing {
+  padding-top: 80px !important;
+}
 .main-footer {
   height: 30vh;
   width: 100%;
@@ -96,4 +104,46 @@
   position: absolute;
   bottom: 0;
   color: white;
+}
+
+.btn-outline-detail {
+  color: white;
+  background-color: $detail-custom-color;
+  border-color: $detail-custom-color;
+  box-shadow: 0px -1px 23px 0px rgba(106, 202, 219, 0.75);
+  -webkit-box-shadow: 0px -1px 23px 0px rgba(106, 202, 219, 0.75);
+  -moz-box-shadow: 0px -1px 23px 0px rgba(106, 202, 219, 0.75);
+}
+
+.btn-outline-primary:hover {
+  background-color: $detail-custom-color;
+}
+
+.text-custom{
+  color: $detail-custom-color;
+}
+
+.bg-detail{
+  background-color: $detail-custom-color;
+}
+
+.custom-card{
+  height: 200px;
+  text-align: center;
+}
+
+.custom-card2{
+  cursor: pointer;
+  text-align: center;
+  transform: all .3s;
+}
+
+.custom-card2:hover{
+  cursor: pointer;
+  text-align: center;
+  transform: scale(1.01);
+}
+
+.text-detail{
+  color: $secondary-custom-color;
 }
