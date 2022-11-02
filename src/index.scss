@@ -4,24 +4,22 @@
   box-sizing: border-box;
 }
 
-
-.bg-gray{
+.bg-gray {
   background-color: rgb(243, 243, 243);
 }
 
-.w-full{
+.w-full {
   width: 100%;
 }
- 
-.border-gray{
+
+.border-gray {
   border-color: rgb(170, 170, 170);
 }
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer !important;
-  .option_item{
-    &:hover{
+  .option_item {
+    &:hover {
       color: red;
     }
   }
 }
-
