@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Sidebar.module.scss";
 import logo from "../../assets/img/logo3.png";
 import { Link } from "react-router-dom";
+import useModal from "../Modal/useModal";
 
 export default function Sidebar({
   width,
@@ -39,11 +40,6 @@ export default function Sidebar({
       icon: <i className="fa-solid fa-chalkboard-user fa-xl"></i>,
       path: "/admin-courses",
     },
-    {
-      label: "Perfil",
-      icon: <i className="fas fa-book-open fa-xl"></i>,
-      path: "/teacher-profile",
-    },
   ];
 
   let adminRoutesStudent = [
@@ -52,13 +48,9 @@ export default function Sidebar({
       icon: <i className="fa-solid fa-chalkboard-user fa-xl"></i>,
       path: "/home-student",
     },
-    {
-      label: "Perfil",
-      icon: <i className="fas fa-book-open fa-xl"></i>,
-      path: "/teacher-profile",
-    },
   ];
-  let userRoutes = [...adminRoutesStudent];
+  let userRoutes = [...adminRoutesMaster];
+  let {modal, openModal} = useModal({title:'Editar Perfil',body:''})
   return (
     <aside
       className={`d-flex flex-column flex-shrink-0 p-3 text-white main-admin-sidebar  p-0 ${style.sidebar__bg} `}
@@ -105,12 +97,18 @@ export default function Sidebar({
           aria-labelledby="dropdownUser1"
         >
           <li>
+            <a className="dropdown-item" onClick={()=>openModal()}>
+            <i className="fa-solid fa-gear"></i> Editar Perfil
+            </a>
+          </li>
+          <li>
             <a className="dropdown-item" href="#">
-              Cerrar Sesion
+            <i className="fa-solid fa-right-from-bracket"></i> Cerrar Sesion
             </a>
           </li>
         </ul>
       </div>
+      {modal}
     </aside>
   );
 }

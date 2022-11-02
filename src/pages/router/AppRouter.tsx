@@ -21,7 +21,7 @@ import MyCourse from "../student/MyCourse";
 
 export const AppRouter = () => {
   let checking = false;
-  let id = 0;
+  let id = 1;
 
   if (checking) {
     return <h1>Load Screen</h1>;

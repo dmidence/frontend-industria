@@ -1,9 +1,9 @@
-import React, { ReactElement, useState } from 'react';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import AdminNavbar from '../../components/Navbar/AdminNavbar';
-import AdminFooter from '../../components/Footer/AdminFooter';
-import RecursosSection from './RecursosSection';
-import CalSection from './calSection';
+import React, { ReactElement, useState } from 'react'
+import Sidebar from '../../components/Sidebar/Sidebar'
+import AdminNavbar from '../../components/Navbar/AdminNavbar'
+import AdminFooter from '../../components/Footer/AdminFooter'
+import RecursosSection from './RecursosSection'
+import CalSection from './CalSection'
 
 export default function MyCourse() {
   let initialWidth = 80
@@ -21,13 +21,13 @@ export default function MyCourse() {
 
   const [showRes, setShowRes] = useState(true)
 
-  const handelshowRes = () =>{
-      setShowRes(true)
+  const handelshowRes = () => {
+    setShowRes(true)
   }
 
-  const handelshowcals = () =>{
+  const handelshowcals = () => {
     setShowRes(false)
-}
+  }
 
   let recursos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   return (
@@ -48,18 +48,49 @@ export default function MyCourse() {
                 <h2 className="text-secondary">Nombre Curso</h2>
                 <div>
                   <span className="px-1">
-                    <button className="btn btn-success" onClick={handelshowRes}>Recursos</button>
+                    <button className="btn btn-success" onClick={handelshowRes}>
+                      Recursos
+                    </button>
                   </span>
                   <span className="px-1">
-                    <button className="btn btn-primary" onClick={handelshowcals}>Calificaciones</button>
+                    <button
+                      className="btn btn-primary"
+                      onClick={handelshowcals}
+                    >
+                      Calificaciones
+                    </button>
                   </span>
                 </div>
               </div>
               <hr />
               <div className="d-flex flex-wrap justify-content-around">
                 {/* Body */}
-                {showRes && <RecursosSection recursos={recursos}/>}
-                {!showRes && <CalSection calfications={recursos}/>}
+                <nav
+                  aria-label="..."
+                  className="w-full d-flex justify-content-center p-4"
+                >
+                  <ul className="pagination w-full d-flex justify-content-around">
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        Unidad 1 <span className="sr-only">(current)</span>
+                      </a>
+                    </li>
+                    <li className="page-item ">
+                    {/* <li className="page-item active"> */}
+                      <a className="page-link" href="#">
+                        Unidad 2
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        Unidad 3
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <hr />
+                {showRes && <RecursosSection recursos={recursos} />}
+                {!showRes && <CalSection calfications={recursos} />}
               </div>
             </div>
           </div>
