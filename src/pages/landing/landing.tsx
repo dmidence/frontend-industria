@@ -1,58 +1,70 @@
-import React from 'react'
-import './landing.scss'
-import Navbar from '../../components/Navbar'
-import section1 from '../../assets/img/boybooks.jpg'
-import section2 from '../../assets/img/boyssmartphone.jpg'
+import React from "react";
+import "./landing.scss";
+import Navbar from "../../components/Navbar";
+import FooterLanding from "../../components/FooterLanding/FooterLanding";
+import section1 from "../../assets/img/child2.jpg";
+import section2 from "../../assets/img/child3.jpg";
 export default function Landing() {
   return (
     <>
       <Navbar></Navbar>
-      <div className="container-fluid m-0 p-0 margin-landing">
-        <main className="row ms-auto me-auto w-75  main-section p-5">
-          <section className="col-6 d-flex justify-content-center align-items-center">
-            <div className="p-2">
-              <h2 className="my-5">Nom App</h2>
-              <strong>
-                <span className="text-custom">
-                  Slogan lorem ippcum asdasdasdas
-                </span>
-              </strong>
-              <p className="my-2">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque
-                enim distinctio, accusamus repellendus odit ullam modi
-                voluptatem voluptas dolorum quo voluptate nam nisi in atque vel,
-                cupiditate illo excepturi mollitia!
-              </p>
-              <button className="btn btn-outline-detail btn-lg  my-4">
-                <strong>Lorem</strong>
-              </button>
+      <div className="container-fluid m-0 p-0 margin-landing ">
+        <main className="w-100 main-bg">
+          <div className="opac-bg">
+            <div className="row ms-auto me-auto w-75  main-section p-5 pt-2">
+              <h1 className="mb-3 w-100 text-center">Nom App</h1>
+              <section className="col-6 d-flex justify-content-center align-items-center">
+                <div className="p-2">
+                  <strong>
+                    <h3 className="text-custom">
+                      Slogan lorem ippcum asdasdasdas
+                    </h3>
+                  </strong>
+                  <strong>
+                    <p className="my-2">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Itaque enim distinctio, accusamus repellendus odit ullam
+                      modi voluptatem voluptas dolorum quo voluptate nam nisi in
+                      atque vel, cupiditate illo excepturi mollitia!
+                    </p>
+                  </strong>
+                  <button className="btn btn-outline-detail btn-lg  my-4">
+                    <strong>Lorem</strong>
+                  </button>
+                </div>
+              </section>
+              <section className="col-6 d-flex justify-content-center align-items-center">
+                <div>
+                  <img
+                    src={section1}
+                    alt=""
+                    className="scale-hover img-fluid w-75"
+                  />
+                </div>
+              </section>
+              <section className="col-6 my-5 d-flex justify-content-center align-items-center">
+                <img
+                  src={section2}
+                  alt=""
+                  className="scale-hover2 img-fluid w-75"
+                />
+              </section>
+              <section className="col-6 my-5 d-flex justify-content-center align-items-center">
+                <div className="p-2">
+                  <strong>
+                    <p className="my-2 text-center">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Itaque enim distinctio, accusamus repellendus odit ullam
+                      modi voluptatem voluptas dolorum quo voluptate nam nisi in
+                      atque vel, cupiditate illo excepturi mollitia!
+                    </p>
+                  </strong>
+                </div>
+              </section>
             </div>
-          </section>
-          <section className="col-6 d-flex justify-content-center align-items-center">
-            <div>
-              <img
-                src={section1}
-                alt=""
-                className="scale-hover img-fluid w-75"
-              />
-            </div>
-          </section>
-          <section className="col-6 my-5 d-flex justify-content-center align-items-center">
-            <img src={section2} alt="" className="scale-hover img-fluid w-75" />
-          </section>
-          <section className="col-6 my-5 d-flex justify-content-center align-items-center">
-            <div className="p-2">
-              <strong>
-                <p className="my-2 text-center">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Itaque enim distinctio, accusamus repellendus odit ullam modi
-                  voluptatem voluptas dolorum quo voluptate nam nisi in atque
-                  vel, cupiditate illo excepturi mollitia!
-                </p>
-              </strong>
-            </div>
-          </section>
+          </div>
         </main>
+
         <main className="ms-auto me-auto w-75  main-section w-100 p-5 bg-detail">
           <div className="w-75 m-auto row">
             <div className="col-3 p-1">
@@ -154,14 +166,8 @@ export default function Landing() {
             </div>
           </div>
         </main>
-          <footer className="w-100 bg-back main-footer bg-footer row text-white p-5">
-          <div className="col-3">Section 1</div>
-          <div className="col-3">Section 2</div>
-          <div className="col-3">Section 3</div>
-          <div className="col-3">Section 4</div>
-        </footer>
+        <FooterLanding></FooterLanding>
       </div>
-        
     </>
-  )
+  );
 }
