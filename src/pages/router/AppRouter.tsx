@@ -18,10 +18,10 @@ import MasterAdminAdmin from "../admin/MasterAdminAdmin";
 import Login from "../login/Login";
 import HomeStudents from "../student/HomeStudent";
 import MyCourse from "../student/MyCourse";
-
+import LandingUser from "../landingUser/LandingUser";
 export const AppRouter = () => {
   let checking = false;
-  let id = 1;
+  let id = 0;
 
   if (checking) {
     return <h1>Load Screen</h1>;
@@ -35,6 +35,11 @@ export const AppRouter = () => {
           <PublicRoute
             path="/landing"
             component={Landing}
+            isAuthenticated={!!id}
+          />
+          <PublicRoute
+            path="/landing-user"
+            component={LandingUser}
             isAuthenticated={!!id}
           />
           <PrivateRoute
