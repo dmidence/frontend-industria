@@ -9,7 +9,13 @@ export default function Navbar() {
           <span className=" text-white">NAPP</span>
         </a>
         <div className="d-flex" role="search">
-          <button className="btn text-white " type="submit">
+          <button
+            className="btn text-white cursor-pointer pointer "
+            type="submit"
+            onClick={() =>
+              window.open('"http://localhost:3005/login"', "_blank")
+            }
+          >
             <strong> Iniciar Sesion</strong>
           </button>
         </div>

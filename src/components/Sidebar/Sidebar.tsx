@@ -49,8 +49,8 @@ export default function Sidebar({
       path: "/home-student",
     },
   ];
-  let userRoutes = [...adminRoutesMaster];
-  let {modal, openModal} = useModal({title:'Editar Perfil',body:''})
+  let userRoutes = [...adminRoutesTeacher];
+  let { modal, openModal } = useModal({ title: "Editar Perfil", body: "" });
   return (
     <aside
       className={`d-flex flex-column flex-shrink-0 p-3 text-white main-admin-sidebar  p-0 ${style.sidebar__bg} `}
@@ -97,13 +97,13 @@ export default function Sidebar({
           aria-labelledby="dropdownUser1"
         >
           <li>
-            <a className="dropdown-item" onClick={()=>openModal()}>
-            <i className="fa-solid fa-gear"></i> Editar Perfil
+            <a className="dropdown-item" onClick={() => openModal()}>
+              <i className="fa-solid fa-gear"></i> Editar Perfil
             </a>
           </li>
           <li>
             <a className="dropdown-item" href="#">
-            <i className="fa-solid fa-right-from-bracket"></i> Cerrar Sesion
+              <i className="fa-solid fa-right-from-bracket"></i> Cerrar Sesion
             </a>
           </li>
         </ul>

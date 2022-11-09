@@ -31,7 +31,11 @@ export const AppRouter = () => {
     <Router>
       <div>
         <Switch>
-          <PublicRoute path="/login" component={Login} isAuthenticated={!!id} />
+          <PublicRoute
+            path="/logaz/:id"
+            component={Login}
+            isAuthenticated={!!id}
+          />
           <PublicRoute
             path="/landing"
             component={Landing}
