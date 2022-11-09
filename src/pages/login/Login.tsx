@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function Login() {
-  return <div>Login Azure ID</div>;
+  let params = useParams();
+  useEffect(() => {
+    fetch("");
+  }, []);
+
+  return <div>{JSON.stringify(params).replaceAll("_$", ".")}</div>;
 }
