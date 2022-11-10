@@ -19,9 +19,15 @@ import Login from "../login/Login";
 import HomeStudents from "../student/HomeStudent";
 import MyCourse from "../student/MyCourse";
 import LandingUser from "../landingUser/LandingUser";
+import AdminHome from "../admin/AdminHome";
 export const AppRouter = () => {
   let checking = false;
-  let id = 0;
+  let id: any;
+
+  id = !!sessionStorage.getItem("appNameLogIn")
+    ? sessionStorage.getItem("appNameLogIn")
+    : 0;
+  id = JSON.parse(id).token;
 
   if (checking) {
     return <h1>Load Screen</h1>;
@@ -32,7 +38,7 @@ export const AppRouter = () => {
       <div>
         <Switch>
           <PublicRoute
-            path="/logaz/:id"
+            path="/logaz/:token"
             component={Login}
             isAuthenticated={!!id}
           />
@@ -72,11 +78,7 @@ export const AppRouter = () => {
             isAuthenticated={!!id}
           />
           <Route path="landing2" component={Landing} />
-          <PrivateRoute
-            path="/"
-            component={MasterAdmin}
-            isAuthenticated={!!id}
-          />
+          <PrivateRoute path="/" component={AdminHome} isAuthenticated={!!id} />
           <Redirect to="/" />
         </Switch>
       </div>

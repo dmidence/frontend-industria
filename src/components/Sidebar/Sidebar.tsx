@@ -49,8 +49,39 @@ export default function Sidebar({
       path: "/home-student",
     },
   ];
-  let userRoutes = [...adminRoutesTeacher];
+  let data: any;
+  let user: any;
+
+  data = !!sessionStorage.getItem("appNameLogIn")
+    ? sessionStorage.getItem("appNameLogIn")
+    : "{}";
+
+  user = JSON.parse(data).user;
+  console.log(user);
+  let userRoutes: any[] = [];
+  if (user.type) {
+    switch (user.type.toLocaleLowerCase()) {
+      case "estudiante":
+        userRoutes = [...adminRoutesStudent];
+        break;
+      case "profesor":
+        userRoutes = [...adminRoutesTeacher];
+        break;
+      case "administrador":
+        userRoutes = [...adminRoutesMaster];
+        break;
+      default:
+        break;
+    }
+  }
+
   let { modal, openModal } = useModal({ title: "Editar Perfil", body: "" });
+
+  const handleLogout = () => {
+    sessionStorage.clear();
+    location.reload();
+  };
+
   return (
     <aside
       className={`d-flex flex-column flex-shrink-0 p-3 text-white main-admin-sidebar  p-0 ${style.sidebar__bg} `}
@@ -103,7 +134,11 @@ export default function Sidebar({
           </li>
           <li>
             <a className="dropdown-item" href="#">
-              <i className="fa-solid fa-right-from-bracket"></i> Cerrar Sesion
+              <i
+                className="fa-solid fa-right-from-bracket"
+                onClick={() => handleLogout()}
+              ></i>{" "}
+              Cerrar Sesion
             </a>
           </li>
         </ul>

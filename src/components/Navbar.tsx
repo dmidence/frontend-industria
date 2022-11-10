@@ -13,7 +13,7 @@ export default function Navbar() {
             className="btn text-white cursor-pointer pointer "
             type="submit"
             onClick={() =>
-              window.open('"http://localhost:3005/login"', "_blank")
+              (window.location.href = "http://localhost:3005/login")
             }
           >
             <strong> Iniciar Sesion</strong>
