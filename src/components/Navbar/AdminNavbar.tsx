@@ -1,12 +1,25 @@
-import React from 'react'
-import useModal from '../Modal/useModal'
+import React from "react";
+import { Link } from "react-router-dom";
+import useModal from "../Modal/useModal";
 
 export default function AdminNavbar({
   handleWidth,
 }: {
-  handleWidth: () => void
+  handleWidth: () => void;
 }) {
-  let {modal, openModal} = useModal({title:'Editar Perfil',body:''})
+  let { modal, openModal } = useModal({ title: "Editar Perfil", body: "" });
+  const handleLogout = () => {
+    sessionStorage.removeItem("appNameLogIn");
+    location.reload();
+  };
+  let data: any;
+  let user: any;
+
+  data = !!sessionStorage.getItem("appNameLogIn")
+    ? sessionStorage.getItem("appNameLogIn")
+    : "{}";
+
+  user = JSON.parse(data).user;
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light pe-1">
@@ -31,43 +44,49 @@ export default function AdminNavbar({
             onClick={() => handleWidth()}
           ></i>
           <div className="d-flex flex-column flex-end">
-          <div className="dropdown">
-        <a
-          href="#"
-          className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-          id="dropdownUser1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img
-            src="https://github.com/mdo.png"
-            alt=""
-            width="32"
-            height="32"
-            className="rounded-circle me-2"
-          />
-          <strong className='text-dark'>Nombre de Usuario</strong>
-        </a>
-        <ul
-          className="dropdown-menu dropdown-menu-dark text-small shadow"
-          aria-labelledby="dropdownUser1"
-        >
-          <li>
-            <a className="dropdown-item" onClick={()=>openModal()}>
-            <i className="fa-solid fa-gear"></i> Editar Perfil
-            </a>
-          </li>
-          <li>
-            <a className="dropdown-item" href="#">
-            <i className="fa-solid fa-right-from-bracket"></i> Cerrar Sesion
-            </a>
-          </li>
-        </ul>
-      </div>
+            <div className="dropdown">
+              <a
+                href="#"
+                className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                id="dropdownUser1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="https://github.com/mdo.png"
+                  alt=""
+                  width="32"
+                  height="32"
+                  className="rounded-circle me-2"
+                />
+                <strong className="text-dark">{user.name}</strong>
+              </a>
+              <ul
+                className="dropdown-menu dropdown-menu-dark text-small shadow"
+                aria-labelledby="dropdownUser1"
+              >
+                <li>
+                  <a className="dropdown-item" onClick={() => openModal()}>
+                    <i className="fa-solid fa-gear"></i> Editar Perfil
+                  </a>
+                </li>
+                <li>
+                  <Link to="/" className="dropdown-item">
+                    <i className="fa-solid fa-home"></i> Inicio
+                  </Link>
+                </li>
+                <li>
+                  <a className="dropdown-item" onClick={() => handleLogout()}>
+                    <i className="fa-solid fa-right-from-bracket"></i> Cerrar
+                    Sesion
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
       {modal}
     </nav>
-  )
+  );
 }

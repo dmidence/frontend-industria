@@ -1,11 +1,43 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
-  let params = useParams();
+  let params = useParams<any>();
+
   useEffect(() => {
-    fetch("");
+    axios
+      .get("http://localhost:3005/api/user", {
+        headers: {
+          Authorization: `Bearer ${params.token.replaceAll("_$", ".")}`,
+        },
+      })
+      .then((res) => {
+        res.data.token = params.token.replaceAll("_$", ".");
+        sessionStorage.setItem("appNameLogIn", JSON.stringify(res.data));
+        location.reload();
+      })
+      .catch((err) => {
+        location.reload();
+      });
   }, []);
 
-  return <div>{JSON.stringify(params).replaceAll("_$", ".")}</div>;
+  return (
+    <div className="max-spiner-container">
+      <div className="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  );
 }
