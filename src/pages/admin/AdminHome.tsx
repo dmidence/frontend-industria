@@ -32,7 +32,7 @@ export default function AdminHome() {
             className="tableSection w-full px-5 py-2 d-flex justify-content-center align-items-center"
             style={{ minHeight: "90vh" }}
           >
-            Bienvenido Perrito
+            Bienvenido
           </div>
           <AdminFooter></AdminFooter>
         </div>

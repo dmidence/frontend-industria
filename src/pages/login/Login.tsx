@@ -4,10 +4,9 @@ import axios from "axios";
 
 export default function Login() {
   let params = useParams<any>();
-
   useEffect(() => {
     axios
-      .get("http://localhost:3005/api/user", {
+      .get(import.meta.env.VITE_API_URL + "/user", {
         headers: {
           Authorization: `Bearer ${params.token.replaceAll("_$", ".")}`,
         },
