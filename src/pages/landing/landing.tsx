@@ -17,11 +17,13 @@ export default function Landing() {
                 <div className="p-2">
                   <strong>
                     <h3 className="text-custom">
+                      {/* AQUI CARLOS */}
                       Slogan lorem ippcum asdasdasdas
                     </h3>
                   </strong>
                   <strong>
                     <p className="my-2">
+                      {/* AQUI CARLOS */}
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Itaque enim distinctio, accusamus repellendus odit ullam
                       modi voluptatem voluptas dolorum quo voluptate nam nisi in
@@ -29,7 +31,7 @@ export default function Landing() {
                     </p>
                   </strong>
                   <button className="btn btn-outline-detail btn-lg  my-4">
-                    <strong>Lorem</strong>
+                    <strong>{/* AQUI CARLOS */}Lorem</strong>
                   </button>
                 </div>
               </section>
@@ -53,6 +55,7 @@ export default function Landing() {
                 <div className="p-2">
                   <strong>
                     <p className="my-2 text-center">
+                      {/* AQUI CARLOS */}
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Itaque enim distinctio, accusamus repellendus odit ullam
                       modi voluptatem voluptas dolorum quo voluptate nam nisi in
@@ -72,6 +75,7 @@ export default function Landing() {
                 <div className="card-body d-flex flex-column justify-content-center align-items-center">
                   <i className="fa-solid fa-user text-detail fa-2xl my-2"></i>
                   <p className="card-text my-2">
+                    {/* AQUI CARLOS */}
                     With supporting text below as a natural lead-in to
                     additional content.
                   </p>
@@ -83,6 +87,7 @@ export default function Landing() {
                 <div className="card-body d-flex flex-column justify-content-center align-items-center">
                   <i className="fa-solid fa-user text-detail fa-2xl my-2"></i>
                   <p className="card-text my-2">
+                    {/* AQUI CARLOS */}
                     With supporting text below as a natural lead-in to
                     additional content.
                   </p>
@@ -94,6 +99,7 @@ export default function Landing() {
                 <div className="card-body d-flex flex-column justify-content-center align-items-center">
                   <i className="fa-solid fa-user text-detail fa-2xl my-2"></i>
                   <p className="card-text my-2">
+                    {/* AQUI CARLOS */}
                     With supporting text below as a natural lead-in to
                     additional content.
                   </p>
@@ -105,6 +111,7 @@ export default function Landing() {
                 <div className="card-body d-flex flex-column justify-content-center align-items-center">
                   <i className="fa-solid fa-user text-detail fa-2xl my-2"></i>
                   <p className="card-text my-2">
+                    {/* AQUI CARLOS */}
                     With supporting text below as a natural lead-in to
                     additional content.
                   </p>
@@ -113,7 +120,7 @@ export default function Landing() {
             </div>
           </div>
           <div className="w-100 text-center mt-4">
-            <h2 className="text-white">Lorem</h2>
+            <h2 className="text-white">{/* AQUI TAMBIÉN CARLOS */}Lorem</h2>
             <div className="w-75 m-auto row">
               <div className="col-4">
                 <div className="card custom-card2">
@@ -123,8 +130,11 @@ export default function Landing() {
                     alt="Card image cap"
                   />
                   <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
+                    <h5 className="card-title">
+                      {/* AQUI CARLOS */}Card title
+                    </h5>
                     <p className="card-text">
+                      {/* AQUI CARLOS */}
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </p>
@@ -139,8 +149,11 @@ export default function Landing() {
                     alt="Card image cap"
                   />
                   <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
+                    <h5 className="card-title">
+                      {/* AQUI CARLOS */}Card title
+                    </h5>
                     <p className="card-text">
+                      {/* AQUI CARLOS */}
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </p>
@@ -155,8 +168,11 @@ export default function Landing() {
                     alt="Card image cap"
                   />
                   <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
+                    <h5 className="card-title">
+                      {/* AQUI CARLOS */}Card title
+                    </h5>
                     <p className="card-text">
+                      {/* AQUI CARLOS */}
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </p>
