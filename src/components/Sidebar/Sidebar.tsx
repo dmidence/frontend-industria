@@ -13,24 +13,14 @@ export default function Sidebar({
 }) {
   let adminRoutesMaster = [
     {
-      label: "Administradores",
+      label: "Usuarios",
       icon: <i className="fa-solid fa-user-plus fa-xl"></i>,
       path: "/admin-admin",
-    },
-    {
-      label: "Profesores",
-      icon: <i className="fa-solid fa-chalkboard-user fa-xl"></i>,
-      path: "/",
     },
     {
       label: "Cursos",
       icon: <i className="fas fa-book-open fa-xl"></i>,
       path: "/admin-courses",
-    },
-    {
-      label: "Estudiantes",
-      icon: <i className="fa-solid fa-users fa-xl"></i>,
-      path: "/admin-students",
     },
   ];
 
@@ -62,7 +52,8 @@ export default function Sidebar({
   if (user.type) {
     switch (user.type.toLocaleLowerCase()) {
       case "estudiante":
-        userRoutes = [...adminRoutesStudent];
+        userRoutes = [...adminRoutesMaster];
+        // userRoutes = [...adminRoutesStudent];
         break;
       case "profesor":
         userRoutes = [...adminRoutesTeacher];

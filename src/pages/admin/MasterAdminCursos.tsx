@@ -1,9 +1,11 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import AdminNavbar from '../../components/Navbar/AdminNavbar'
 import AdminFooter from '../../components/Footer/AdminFooter'
 import useModal from '../../components/Modal/useModal'
 import Swal from 'sweetalert2'
+import axios from 'axios'
+import AppPagination from '../../hooks/AppPagination'
 
 export default function MasterAdminAdmin() {
   let initialWidth = 80
@@ -19,30 +21,89 @@ export default function MasterAdminAdmin() {
     }
   }
 
-  let cursos = [
-    { nombre: 'Curso 1', detalle: 'Detalle 1' },
-    { nombre: 'Curso 2', detalle: 'Detalle 2' },
-    { nombre: 'Curso 3', detalle: 'Detalle 3' },
-    { nombre: 'Curso 4', detalle: 'Detalle 4' },
-  ]
+  const [courses, setCourses] = useState<any>([])
+  const [count, setCount] = useState<any>([])
+  const [loading, setLoading] = useState<any>([])
 
-  let { modal: createModal, openModal: openCreateModal } = useModal({
-    title: 'Crear Curso',
-    body: '',
-  })
-  let { modal: updateModal, openModal: updateCreateModal } = useModal({
-    title: 'Editar Curso',
-    body: '',
-  })
+  let token = JSON.parse(sessionStorage.getItem('appNameLogIn') || '').token;
+  const [skip, setskip] = useState(0);
+  const [search, setSearch] = useState<any>("");
 
-  const handleDelete = (element: any) => {
-    Swal.fire({
-      title: 'Eliminar Curso',
-      text: `Eliminar el elemento ${element}`,
-      icon: 'error',
-      confirmButtonText: 'Eliminar',
-    })
+  useEffect(() => {
+    setLoading(true)
+    axios
+      .get(import.meta.env.VITE_API_URL + '/courses', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          skip: skip,
+          search:search
+        },
+      })
+      .then((res) => {
+        setCourses(res.data.users)
+        setCount(res.data.count)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(false)
+      })
+  }, [skip])
+ const handleInputChange = (e:any)=>{
+  setSearch(e.target.value)
+ }
+  let wordSearch = () =>{
+    setskip(0);
+    setpageNumber(1);
+    setLoading(true);
+    axios
+      .get(import.meta.env.VITE_API_URL + '/users', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          skip: 0,
+          search:search
+        },
+      })
+      .then((res) => {
+        setCourses(res.data.users);
+        setCount(res.data.count);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      })
   }
+
+  const [pageNumber, setpageNumber] = useState(1)
+
+  const goBack = () => {
+    setpageNumber(pageNumber - 1);
+    setskip(skip - 10);
+  }
+
+  const goNext = () => {
+    setpageNumber(pageNumber + 1);
+    setskip(skip + 10);
+  }
+
+  const goToSpecific = (currentPageNumber: number) => {
+    setpageNumber(currentPageNumber);
+    setskip(skip * 10 - 10);
+  }
+
+  let { modal: updateModal, openModal: updateCreateModal } = useModal({
+    title: 'Editar Administrador',
+    body: '',
+  })
+
+  // Pagination\
+  // On Parameter Change
+
   return (
     <>
       <div className="d-flex">
@@ -58,18 +119,8 @@ export default function MasterAdminAdmin() {
               style={{ minHeight: '85vh' }}
             >
               <div className="d-flex justify-content-between align-items-center">
-                <h2 className="text-secondary">Cursos</h2>
-                <div>
-                <span className="px-1">
-                    <button
-                      className="btn btn-success"
-                      onClick={() => {
-                        openCreateModal()
-                      }}
-                    >
-                      Estudiantes
-                    </button>
-                  </span>
+                <h2 className="text-secondary">Usuarios</h2>
+                {/* <div>
                   <span className="px-1">
                     <button
                       className="btn btn-primary"
@@ -80,26 +131,42 @@ export default function MasterAdminAdmin() {
                       <i className="fa-solid fa-plus"></i>
                     </button>
                   </span>
+                </div> */}
+                <div className="d-flex">
+                  <input type="text" className="form-control" onChange={handleInputChange}/>
+                  <span className="px-1">
+                    <button className="btn btn-primary" onClick={wordSearch}>
+                      <i className="fa-solid fa-search"></i>
+                    </button>
+                  </span>
                 </div>
               </div>
               <hr />
-              <table className="table table-hover ">
-                <thead className="bg-dark text-white">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Curso</th>
-                    <th scope="col">Detalles</th>
-                    <th scope="col">Opciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <>
-                    {cursos.map(({ nombre, detalle }, index) => (
-                      <tr>
-                        <th scope="row">{index}</th>
-                        <td>{nombre}</td>
-                        <td>{detalle}</td>
-                        <td>
+              {loading ? (
+                <h3>Cargando...</h3>
+              ) : (
+                <>
+                  {!!courses && courses.length > 0 ? (
+                    <>
+                      <table className="table table-hover ">
+                        <thead className="bg-dark text-white">
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Fecha de Creacion</th>
+                            <th scope="col">Tipo</th>
+                            {/* <th scope="col">Opciones</th> */}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <>
+                            {courses.map((user: any) => (
+                              <tr>
+                                <th scope="row">{user.name}</th>
+                                <td>{user.email}</td>
+                                <td>{user.create_at.substring(0, 10)}</td>
+                                <td>{user.type}</td>
+                                {/* <td>
                           <div className="d-flex justify-content-around align-items-center">
                             <i
                               className="fa-solid fa-pen-to-square cursor-pointer text-success"
@@ -110,55 +177,66 @@ export default function MasterAdminAdmin() {
                             <i
                               className="fa-solid fa-trash cursor-pointer text-danger"
                               onClick={() => {
-                                handleDelete(index)
+                                handleDelete(0)
                               }}
                             ></i>
                           </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </>
-                </tbody>
-              </table>
-              <nav
-                aria-label="..."
-                className="w-full d-flex justify-content-end"
-              >
-                <ul className="pagination">
-                  <li className="page-item ">
-                    <a className="page-link" href="#">
-                      &laquo;
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      1
-                    </a>
-                  </li>
-                  <li className="page-item active">
-                    <a className="page-link" href="#">
-                      2 <span className="sr-only">(current)</span>
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      &raquo;
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+                        </td> */}
+                              </tr>
+                            ))}
+                          </>
+                        </tbody>
+                      </table>
+                      <nav
+                        aria-label="..."
+                        className="w-full d-flex justify-content-end"
+                      >
+                        <ul className="pagination">
+                          <>
+                            {Math.ceil(count / 10) != 1 && (
+                              <li
+                                className="page-item "
+                                onClick={() => goBack()}
+                              >
+                                <a className="page-link">&laquo;</a>
+                              </li>
+                            )}
+                          </>
+                          {/* APPPAGINATION */}
+                          <AppPagination
+                            totalCount={count}
+                            siblingCount={1}
+                            currentPage={pageNumber}
+                            goToSpecific={goToSpecific}
+                            goBack={goBack}
+                            goNext={goNext}
+                          ></AppPagination>
+                          <>
+                            {Math.ceil(count / 10) != 1 && (
+                              <li
+                                className="page-item "
+                                onClick={() => goNext()}
+                              >
+                                <a className="page-link">&raquo;</a>
+                              </li>
+                            )}
+                          </>
+                          
+                        </ul>
+                      </nav>
+                    </>
+                  ) : (
+                    <h3>No hay datos a mostrar</h3>
+                  )}
+                </>
+              )}
+
               <hr />
             </div>
           </div>
           <AdminFooter></AdminFooter>
         </div>
       </div>
-      {createModal}
       {updateModal}
     </>
   )

@@ -13,7 +13,7 @@ export default function Navbar() {
             className="btn text-white cursor-pointer pointer "
             type="submit"
             onClick={() =>
-              (window.location.href = "http://localhost:3005/login")
+              (window.location.href = import.meta.env.VITE_API_LOGIN)
             }
           >
             <strong> Iniciar Sesion</strong>
