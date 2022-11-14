@@ -20,6 +20,7 @@ import HomeStudents from "../student/HomeStudent";
 import MyCourse from "../student/MyCourse";
 import LandingUser from "../landingUser/LandingUser";
 import AdminHome from "../admin/AdminHome";
+import MasterAdminSections from "../admin/MasterAdminSections";
 export const AppRouter = () => {
   let checking = false;
   let id: any;
@@ -58,6 +59,11 @@ export const AppRouter = () => {
             isAuthenticated={!!id}
           />
           <PrivateRoute
+            path="/admin-sections/:course_id"
+            component={MasterAdminSections}
+            isAuthenticated={!!id}
+          />
+          <PrivateRoute
             path="/admin-students"
             component={MasterAdminStudents}
             isAuthenticated={!!id}
@@ -68,7 +74,7 @@ export const AppRouter = () => {
             isAuthenticated={!!id}
           />
           <PrivateRoute
-            path="/home-student-course/course/:id"
+            path="/home-student-course/course/:course_id"
             component={MyCourse}
             isAuthenticated={!!id}
           />

@@ -10,18 +10,16 @@ export default function AppPagination({
   siblingCount,
   currentPage,
   goToSpecific,
-  
 }: {
   totalCount: number;
   siblingCount: number;
   currentPage: number;
   goToSpecific: any;
-  goNext:any;
-  goBack:any;
+  goNext: any;
+  goBack: any;
 }) {
   const paginationRange = useMemo(() => {
     const totalPageCount = Math.ceil(totalCount / 10); //Utilizando el numero de paginas
-    
 
     // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
     const totalPageNumbers = siblingCount + 5;
@@ -90,20 +88,21 @@ export default function AppPagination({
         if (pages === 0) {
           return (
             <li className="page-item active">
-                        <a className="page-link" href="#">
-                          ...
-                        </a>
-                      </li>
+              <a className="page-link" href="#">
+                ...
+              </a>
+            </li>
           );
         }
 
         return (
-          <li className={`page-item ${currentPage == pages && 'active'}`} onClick={() => goToSpecific(pages)}title={`Ir a pagina ${pages}`}>
-                        <a className="page-link" href="#">
-                          {pages}
-                        </a>
-                      </li>
-          
+          <li
+            className={`page-item ${currentPage == pages && "active"}`}
+            onClick={() => goToSpecific(pages)}
+            title={`Ir a pagina ${pages}`}
+          >
+            <a className="page-link">{pages}</a>
+          </li>
         );
       })}
     </>

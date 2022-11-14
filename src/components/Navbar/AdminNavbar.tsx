@@ -65,11 +65,11 @@ export default function AdminNavbar({
                 className="dropdown-menu dropdown-menu-dark text-small shadow"
                 aria-labelledby="dropdownUser1"
               >
-                <li>
+                {/* <li>
                   <a className="dropdown-item" onClick={() => openModal()}>
                     <i className="fa-solid fa-gear"></i> Editar Perfil
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/" className="dropdown-item">
                     <i className="fa-solid fa-home"></i> Inicio

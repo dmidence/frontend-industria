@@ -47,13 +47,11 @@ export default function Sidebar({
     : "{}";
 
   user = JSON.parse(data).user;
-  console.log(user);
   let userRoutes: any[] = [];
   if (user.type) {
     switch (user.type.toLocaleLowerCase()) {
       case "estudiante":
-        userRoutes = [...adminRoutesMaster];
-        // userRoutes = [...adminRoutesStudent];
+        userRoutes = [...adminRoutesStudent];
         break;
       case "profesor":
         userRoutes = [...adminRoutesTeacher];
@@ -91,8 +89,21 @@ export default function Sidebar({
         <span className="fs-4">NomApp</span>
       </a>
       <hr />
+      Rutas de Usuario Admin
       <ul className="nav nav-pills flex-column mb-auto">
-        {userRoutes.map(({ label, icon, path }, index) => (
+        {adminRoutesMaster.map(({ label, icon, path }, index) => (
+          <SidebarItems label={label} icon={icon} path={path} key={index} />
+        ))}
+      </ul>
+      Rutas de Usuario Estudiante (Para Pruebas)
+      <ul className="nav nav-pills flex-column mb-auto">
+        {adminRoutesStudent.map(({ label, icon, path }, index) => (
+          <SidebarItems label={label} icon={icon} path={path} key={index} />
+        ))}
+      </ul>
+      Rutas de Usuario Profesor (Para Pruebas)
+      <ul className="nav nav-pills flex-column mb-auto">
+        {adminRoutesTeacher.map(({ label, icon, path }, index) => (
           <SidebarItems label={label} icon={icon} path={path} key={index} />
         ))}
       </ul>
@@ -118,11 +129,11 @@ export default function Sidebar({
           className="dropdown-menu dropdown-menu-dark text-small shadow"
           aria-labelledby="dropdownUser1"
         >
-          <li>
+          {/* <li>
             <a className="dropdown-item" onClick={() => openModal()}>
               <i className="fa-solid fa-gear"></i> Editar Perfil
             </a>
-          </li>
+          </li> */}
           <li>
             <a className="dropdown-item" href="#">
               <i

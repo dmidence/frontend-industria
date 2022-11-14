@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import AdminNavbar from "../../components/Navbar/AdminNavbar";
 import AdminFooter from "../../components/Footer/AdminFooter";
-import { Link } from "react-router-dom";
-import AppPagination from "../../hooks/AppPagination";
+import useModal from "../../components/Modal/useModal";
+import Swal from "sweetalert2";
 import axios from "axios";
+import AppPagination from "../../hooks/AppPagination";
+import CreateCourseForm from "../../forms/CreateCourseForm";
+import CreateSecionForm from "../../forms/CreateSecionForm";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export default function MasterAdmin() {
+export default function MasterAdminSections() {
   let initialWidth = 80;
   const [fullView, setfullView] = useState<boolean>(false);
   const [width, setwidth] = useState<number>(initialWidth);
@@ -20,28 +25,30 @@ export default function MasterAdmin() {
     }
   };
 
-  const [courses, setCourses] = useState<any>([]);
-  const [count, setCount] = useState<any>(0);
+  const [sections, setSections] = useState<any>([]);
+  const [count, setCount] = useState<any>([]);
   const [loading, setLoading] = useState<any>([]);
 
   let token = JSON.parse(sessionStorage.getItem("appNameLogIn") || "").token;
   const [skip, setskip] = useState(0);
   const [search, setSearch] = useState<any>("");
+  let { course_id } = useParams<any>();
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(import.meta.env.VITE_API_URL + "/courses", {
+      .get(import.meta.env.VITE_API_URL + "/sections", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
         params: {
+          course: course_id,
           skip: skip,
           search: search,
         },
       })
       .then((res) => {
-        setCourses(res.data.courses);
+        setSections(res.data.sections);
         setCount(res.data.count);
         setLoading(false);
       })
@@ -50,6 +57,7 @@ export default function MasterAdmin() {
         setLoading(false);
       });
   }, [skip]);
+
   const handleInputChange = (e: any) => {
     setSearch(e.target.value);
   };
@@ -68,7 +76,7 @@ export default function MasterAdmin() {
         },
       })
       .then((res) => {
-        setCourses(res.data.courses);
+        setSections(res.data.courses);
         setCount(res.data.count);
         setLoading(false);
       })
@@ -92,12 +100,24 @@ export default function MasterAdmin() {
 
   const goToSpecific = (currentPageNumber: number) => {
     setpageNumber(currentPageNumber);
-    setskip(skip * 10 - 10);
+    setskip(currentPageNumber * 10 - 10);
   };
 
-  const setActiveCourse = (course: any) => {
-    localStorage.setItem("activecourse", JSON.stringify(course));
+  let { modal: createModal, openModal: openCreateModal } = useModal({
+    title: "Crear Curso",
+    body: <CreateCourseForm></CreateCourseForm>,
+  });
+
+  let { modal: updateModal, openModal: updateCreateModal } = useModal({
+    title: "Agregar Seccion",
+    body: <CreateSecionForm></CreateSecionForm>,
+  });
+
+  let handleUpdate = (course: any) => {
+    localStorage.setItem("CourseToUpdate", JSON.stringify(course));
+    updateCreateModal();
   };
+  console.log("carga compononetn");
   return (
     <>
       <div className="d-flex">
@@ -113,20 +133,21 @@ export default function MasterAdmin() {
               style={{ minHeight: "85vh" }}
             >
               <div className="d-flex justify-content-between align-items-center">
-                <h2 className="text-secondary">Cursos</h2>
-                {/* <div>
-                  <span className="px-1">
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => {
-                        openCreateModal()
-                      }}
-                    >
-                      <i className="fa-solid fa-plus"></i>
-                    </button>
-                  </span>
-                </div> */}
+                <h2 className="text-secondary">Secciones</h2>
+
                 <div className="d-flex">
+                  <div>
+                    <span className="px-1">
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => {
+                          openCreateModal();
+                        }}
+                      >
+                        <i className="fa-solid fa-plus"></i>
+                      </button>
+                    </span>
+                  </div>
                   <input
                     type="text"
                     className="form-control"
@@ -144,39 +165,57 @@ export default function MasterAdmin() {
                 <h3>Cargando...</h3>
               ) : (
                 <>
-                  {!!courses && courses.length > 0 ? (
+                  {!!sections && sections.length > 0 ? (
                     <>
-                      <div className="d-flex flex-wrap justify-content-around">
-                        {courses.map((course: any, index: number) => (
-                          <Link
-                            onClick={() => setActiveCourse(course)}
-                            to={`/home-student-course/course/${course.course_id}`}
-                            style={{ width: "30%" }}
-                            key={course.course_id}
-                          >
-                            <div className="card mt-4 cursor-pointer text-dark">
-                              <img
-                                className="card-img-top"
-                                src="https://th.bing.com/th/id/R.4ff4501d43e60358523ff251a0d35ae9?rik=lbKTUlrf6TNMjg&pid=ImgRaw&r=0"
-                                alt="Card image cap"
-                              />
-                              <div className="card-body">
-                                <h5 className="card-title">{course.title}</h5>
-                                <p className="card-text">
-                                  {course.description}
-                                </p>
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
+                      <table className="table table-hover ">
+                        <thead className="bg-dark text-white">
+                          <tr>
+                            <th scope="col">Nombre de la Seccion</th>
+                            <th scope="col">Fecha de Creacion</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Opciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <>
+                            {sections.map((course: any) => (
+                              <tr>
+                                <th scope="row">{course.name}</th>
+                                <td>{course.create_at.substring(0, 10)}</td>
+                                <td>
+                                  {course.active
+                                    ? "Habilitado"
+                                    : "Desabilitado"}
+                                </td>
+                                {/* <td>
+                                  <div className="d-flex justify-content-around align-items-center">
+                                    <i
+                                      className="fa-solid fa-book cursor-pointer text-success"
+                                      onClick={() => {
+                                        handleUpdate(course);
+                                      }}
+                                    ></i>
+                                    <Link
+                                      to=""
+                                      className="fa-solid fa-right-long cursor-pointer text-primary"
+                                      onClick={() => {
+                                        handleUpdate(course);
+                                      }}
+                                    ></Link>
+                                  </div>
+                                </td> */}
+                              </tr>
+                            ))}
+                          </>
+                        </tbody>
+                      </table>
                       <nav
                         aria-label="..."
                         className="w-full d-flex justify-content-end"
                       >
                         <ul className="pagination">
                           <>
-                            {!!count && Math.ceil(count / 10) != 1 && (
+                            {Math.ceil(count / 10) != 1 && (
                               <li
                                 className="page-item "
                                 onClick={() => goBack()}
@@ -195,7 +234,7 @@ export default function MasterAdmin() {
                             goNext={goNext}
                           ></AppPagination>
                           <>
-                            {!!count && Math.ceil(count / 10) != 1 && (
+                            {Math.ceil(count / 10) != 1 && (
                               <li
                                 className="page-item "
                                 onClick={() => goNext()}
@@ -208,9 +247,7 @@ export default function MasterAdmin() {
                       </nav>
                     </>
                   ) : (
-                    <>
-                      <h3>No hay datos a mostrar</h3>
-                    </>
+                    <h3>No hay datos a mostrar</h3>
                   )}
                 </>
               )}
@@ -221,6 +258,8 @@ export default function MasterAdmin() {
           <AdminFooter></AdminFooter>
         </div>
       </div>
+      {createModal}
+      {updateModal}
     </>
   );
 }
