@@ -6,12 +6,10 @@ import useModal from "../../components/Modal/useModal";
 import Swal from "sweetalert2";
 import axios from "axios";
 import AppPagination from "../../hooks/AppPagination";
-import CreateSecionForm from "../../forms/CreateSecionForm";
-import CreateUserInSection from "../../forms/CreateUserInSection";
-import { Link } from "react-router-dom";
+import UpdateUSerType from "../../forms/UpdateUSerType";
 import { useParams } from "react-router-dom";
 
-export default function MasterAdminSections() {
+export default function MasterAdminSectionsStudents() {
   let initialWidth = 80;
   const [fullView, setfullView] = useState<boolean>(false);
   const [width, setwidth] = useState<number>(initialWidth);
@@ -25,28 +23,30 @@ export default function MasterAdminSections() {
     }
   };
 
-  const [sections, setSections] = useState<any>([]);
+  const [users, setUsers] = useState<any>([]);
   const [count, setCount] = useState<any>([]);
   const [loading, setLoading] = useState<any>([]);
 
   let token = JSON.parse(sessionStorage.getItem("appNameLogIn") || "").token;
   const [skip, setskip] = useState(0);
-  let { course_id } = useParams<any>();
-
+  const [search, setSearch] = useState<any>("");
+  let { id } = useParams<any>();
   useEffect(() => {
     setLoading(true);
     axios
-      .get(import.meta.env.VITE_API_URL + "/sections", {
+      .get(import.meta.env.VITE_API_URL + "/sections/members", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
         params: {
-          course: course_id,
           skip: skip,
+          search: search,
+          section: id,
         },
       })
       .then((res) => {
-        setSections(res.data.sections);
+        console.log(res.data.members);
+        setUsers(res.data.members);
         setCount(res.data.count);
         setLoading(false);
       })
@@ -55,6 +55,33 @@ export default function MasterAdminSections() {
         setLoading(false);
       });
   }, [skip]);
+  const handleInputChange = (e: any) => {
+    setSearch(e.target.value);
+  };
+  let wordSearch = () => {
+    setskip(0);
+    setpageNumber(1);
+    setLoading(true);
+    axios
+      .get(import.meta.env.VITE_API_URL + "/users", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          skip: 0,
+          search: search,
+        },
+      })
+      .then((res) => {
+        setUsers(res.data.members);
+        setCount(res.data.count);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  };
 
   const [pageNumber, setpageNumber] = useState(1);
 
@@ -70,30 +97,13 @@ export default function MasterAdminSections() {
 
   const goToSpecific = (currentPageNumber: number) => {
     setpageNumber(currentPageNumber);
-    setskip(currentPageNumber * 10 - 10);
+    setskip(skip * 10 - 10);
   };
 
   let { modal: updateModal, openModal: updateCreateModal } = useModal({
-    title: "Agregar Seccion",
-    body: <CreateSecionForm></CreateSecionForm>,
+    title: "Editar Tipo de Usuario",
+    body: <UpdateUSerType></UpdateUSerType>,
   });
-
-  let { modal: addUserModal, openModal: openAddUserModal } = useModal({
-    title: "Agregar Usuarios",
-    body: <CreateUserInSection></CreateUserInSection>,
-  });
-
-  let handleUpdate = () => {
-    updateCreateModal();
-  };
-
-  const addUsertoSection = (section: any) => {
-    localStorage.setItem(
-      "currentToUpdateSection",
-      JSON.stringify(section.section_id)
-    );
-    openAddUserModal();
-  };
 
   return (
     <>
@@ -110,21 +120,30 @@ export default function MasterAdminSections() {
               style={{ minHeight: "85vh" }}
             >
               <div className="d-flex justify-content-between align-items-center">
-                <h2 className="text-secondary">Secciones</h2>
-
+                <h2 className="text-secondary">Usuarios</h2>
+                {/* <div>
+                  <span className="px-1">
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        openCreateModal()
+                      }}
+                    >
+                      <i className="fa-solid fa-plus"></i>
+                    </button>
+                  </span>
+                </div> */}
                 <div className="d-flex">
-                  <div>
-                    <span className="px-1">
-                      <button
-                        className="btn btn-primary"
-                        onClick={() => {
-                          handleUpdate();
-                        }}
-                      >
-                        <i className="fa-solid fa-plus"></i>
-                      </button>
-                    </span>
-                  </div>
+                  <input
+                    type="text"
+                    className="form-control"
+                    onChange={handleInputChange}
+                  />
+                  <span className="px-1">
+                    <button className="btn btn-primary" onClick={wordSearch}>
+                      <i className="fa-solid fa-search"></i>
+                    </button>
+                  </span>
                 </div>
               </div>
               <hr />
@@ -132,42 +151,25 @@ export default function MasterAdminSections() {
                 <h3>Cargando...</h3>
               ) : (
                 <>
-                  {!!sections && sections.length > 0 ? (
+                  {!!users && users.length > 0 ? (
                     <>
                       <table className="table table-hover ">
                         <thead className="bg-dark text-white">
                           <tr>
-                            <th scope="col">Nombre de la Seccion</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Correo</th>
                             <th scope="col">Fecha de Creacion</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col">Tipo</th>
                           </tr>
                         </thead>
                         <tbody>
                           <>
-                            {sections.map((course: any) => (
+                            {users.map((user: any) => (
                               <tr>
-                                <th scope="row">{course.name}</th>
-                                <td>{course.create_at.substring(0, 10)}</td>
-                                <td>
-                                  {course.active
-                                    ? "Habilitado"
-                                    : "Desabilitado"}
-                                </td>
-                                <td>
-                                  <div className="d-flex justify-content-around align-items-center">
-                                    <i
-                                      className="fa-solid fa-user cursor-pointer text-success"
-                                      onClick={() => {
-                                        addUsertoSection(course);
-                                      }}
-                                    ></i>
-                                    <Link
-                                      to={`/admin-sections-students/${course.section_id}`}
-                                      className="fa-solid fa-right-long cursor-pointer text-primary"
-                                    ></Link>
-                                  </div>
-                                </td>
+                                <th scope="row">{user.name}</th>
+                                <td>{user.email}</td>
+                                <td>{user.create_at.substring(0, 10)}</td>
+                                <td>{user.type}</td>
                               </tr>
                             ))}
                           </>
@@ -223,7 +225,6 @@ export default function MasterAdminSections() {
         </div>
       </div>
       {updateModal}
-      {addUserModal}
     </>
   );
 }
