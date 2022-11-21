@@ -12,13 +12,13 @@ export default function Landing() {
         <main className="w-100 main-bg">
           <div className="opac-bg">
             <div className="row ms-auto me-auto w-75  main-section p-5 pt-2">
-              <h1 className="mb-3 w-100 text-center">Nom App</h1>
+              <h1 className="mb-3 w-100 text-center">5Étoile</h1>
               <section className="col-6 d-flex justify-content-center align-items-center">
                 <div className="p-2">
                   <strong>
                     <h3 className="text-custom">
                       {/* AQUI CARLOS */}
-                      Slogan lorem ippcum asdasdasdas
+                      Facilidad y Practicidad
                     </h3>
                   </strong>
                   <strong>

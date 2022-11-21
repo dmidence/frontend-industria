@@ -6,7 +6,7 @@ export default function FooterLanding() {
       <div className="col-3 footer-logo">
         <img className="img-fluid img-footer" src={logo} alt="" />
 
-        <p className="text-center fs-3">Napp</p>
+        <p className="text-center fs-3">5ÉTOILE</p>
       </div>
       <div className="col-3 footer-section pt-3 ">
         <i className="fa-solid fa-link"> seccion 3</i>
