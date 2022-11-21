@@ -86,7 +86,7 @@ export default function Sidebar({
         className="d-flex w-100 justify-content-center align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
       >
         <img src={logo} alt="Logo" className="img-fluid img-brand" />
-        <span className="fs-4">NomApp</span>
+        <span className="fs-4">5ÉTOILE</span>
       </a>
       <hr />
       Rutas de Usuario Admin
