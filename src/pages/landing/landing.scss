@@ -18,7 +18,7 @@ body {
 }
 
 .main-bg {
-  background: url("../../assets/img/testimg.jpg");
+  // background: url("../../assets/img/testimg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -129,7 +129,7 @@ body {
 .custom-card2 {
   cursor: pointer;
   text-align: center;
-  transform: all 0.3s;
+  transition: all 0.3s;
 }
 
 .custom-card2:hover {
@@ -181,4 +181,17 @@ body {
 
 .opac-bg {
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.logButton:hover{
+  transition: all .3s;
+}
+
+.logButton:hover{
+  color:$detail-custom-color ;
+}
+
+.text-detail{
+  font-size: 6rem;
+  color: $back-custom-color ;
 }

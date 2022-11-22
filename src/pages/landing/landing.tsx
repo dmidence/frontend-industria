@@ -2,7 +2,6 @@ import React from "react";
 import "./landing.scss";
 import Navbar from "../../components/Navbar";
 import FooterLanding from "../../components/FooterLanding/FooterLanding";
-import section1 from "../../assets/img/child2.jpg";
 import section2 from "../../assets/img/child3.jpg";
 export default function Landing() {
   return (
@@ -12,9 +11,9 @@ export default function Landing() {
         <main className="w-100 main-bg">
           <div className="opac-bg">
             <div className="row ms-auto me-auto w-75  main-section p-5 pt-2">
-              <h1 className="mb-3 w-100 text-center">5Étoile</h1>
+              <h1 className="mb-3 w-100 text-center text-detail">Crescendus</h1>
               <section className="col-6 d-flex justify-content-center align-items-center">
-                <div className="p-2">
+                <div className="p-2 text-center">
                   <strong>
                     <h3 className="text-custom">
                       {/* AQUI CARLOS */}
@@ -30,18 +29,14 @@ export default function Landing() {
                       atque vel, cupiditate illo excepturi mollitia!
                     </p>
                   </strong>
-                  <button className="btn btn-outline-detail btn-lg  my-4">
-                    <strong>{/* AQUI CARLOS */}Lorem</strong>
+                  <button
+                    className="btn btn-outline-detail btn-lg  my-4"
+                    onClick={() =>
+                      (window.location.href = import.meta.env.VITE_API_LOGIN)
+                    }
+                  >
+                    <strong>{/* AQUI CARLOS */}Registrate</strong>
                   </button>
-                </div>
-              </section>
-              <section className="col-6 d-flex justify-content-center align-items-center">
-                <div>
-                  <img
-                    src={section1}
-                    alt=""
-                    className="scale-hover img-fluid w-75"
-                  />
                 </div>
               </section>
               <section className="col-6 my-5 d-flex justify-content-center align-items-center">
@@ -51,74 +46,11 @@ export default function Landing() {
                   className="scale-hover2 img-fluid w-75"
                 />
               </section>
-              <section className="col-6 my-5 d-flex justify-content-center align-items-center">
-                <div className="p-2">
-                  <strong>
-                    <p className="my-2 text-center">
-                      {/* AQUI CARLOS */}
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Itaque enim distinctio, accusamus repellendus odit ullam
-                      modi voluptatem voluptas dolorum quo voluptate nam nisi in
-                      atque vel, cupiditate illo excepturi mollitia!
-                    </p>
-                  </strong>
-                </div>
-              </section>
             </div>
           </div>
         </main>
 
         <main className="ms-auto me-auto w-75  main-section w-100 p-5 bg-detail">
-          <div className="w-75 m-auto row">
-            <div className="col-3 p-1">
-              <div className="card custom-card">
-                <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                  <i className="fa-solid fa-user text-detail fa-2xl my-2"></i>
-                  <p className="card-text my-2">
-                    {/* AQUI CARLOS */}
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-3 p-1">
-              <div className="card custom-card">
-                <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                  <i className="fa-solid fa-user text-detail fa-2xl my-2"></i>
-                  <p className="card-text my-2">
-                    {/* AQUI CARLOS */}
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-3 p-1">
-              <div className="card custom-card">
-                <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                  <i className="fa-solid fa-user text-detail fa-2xl my-2"></i>
-                  <p className="card-text my-2">
-                    {/* AQUI CARLOS */}
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-3 p-1">
-              <div className="card custom-card">
-                <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                  <i className="fa-solid fa-user text-detail fa-2xl my-2"></i>
-                  <p className="card-text my-2">
-                    {/* AQUI CARLOS */}
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
           <div className="w-100 text-center mt-4">
             <h2 className="text-white">{/* AQUI TAMBIÉN CARLOS */}Lorem</h2>
             <div className="w-75 m-auto row">

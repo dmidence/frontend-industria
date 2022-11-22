@@ -116,3 +116,18 @@ li {
   justify-content: center;
   align-items: center;
 }
+
+
+.decoration-none{
+  text-decoration: none;
+}
+
+.btn-app{
+  color: white;
+  background-color: $back-custom-color;
+}
+
+.btn-app:hover{
+  color: white;
+  background-color: darken($back-custom-color, 5%) ;
+}

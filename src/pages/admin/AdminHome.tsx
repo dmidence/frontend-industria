@@ -2,8 +2,7 @@ import React, { ReactElement, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import AdminNavbar from "../../components/Navbar/AdminNavbar";
 import AdminFooter from "../../components/Footer/AdminFooter";
-import useModal from "../../components/Modal/useModal";
-import Swal from "sweetalert2";
+import logo from "../../assets/img/logo3.png";
 
 export default function AdminHome() {
   let initialWidth = 80;
@@ -29,10 +28,11 @@ export default function AdminHome() {
         >
           <AdminNavbar handleWidth={handleWidth}></AdminNavbar>
           <div
-            className="tableSection w-full px-5 py-2 d-flex justify-content-center align-items-center"
+            className="tableSection w-full px-5 py-2 d-flex justify-content-center align-items-center flex-column"
             style={{ minHeight: "90vh" }}
           >
-            Bienvenido
+            <img src={logo} alt="" />
+            <h3>Bienvenido a nuestra plataforma</h3>
           </div>
           <AdminFooter></AdminFooter>
         </div>

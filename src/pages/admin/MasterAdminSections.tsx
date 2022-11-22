@@ -8,6 +8,7 @@ import axios from "axios";
 import AppPagination from "../../hooks/AppPagination";
 import CreateSecionForm from "../../forms/CreateSecionForm";
 import CreateUserInSection from "../../forms/CreateUserInSection";
+import UploadWork from "../../forms/UploadWork";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
@@ -83,6 +84,11 @@ export default function MasterAdminSections() {
     body: <CreateUserInSection></CreateUserInSection>,
   });
 
+  let { modal: addWorkModal, openModal: OpenWorkModal } = useModal({
+    title: "Agregar Asignacion",
+    body: <UploadWork></UploadWork>,
+  });
+
   let handleUpdate = () => {
     updateCreateModal();
   };
@@ -93,6 +99,14 @@ export default function MasterAdminSections() {
       JSON.stringify(section.section_id)
     );
     openAddUserModal();
+  };
+
+  const addWorktoSection = (section: any) => {
+    localStorage.setItem(
+      "currentToUpdateSection",
+      JSON.stringify(section.section_id)
+    );
+    OpenWorkModal();
   };
 
   return (
@@ -156,6 +170,16 @@ export default function MasterAdminSections() {
                                 </td>
                                 <td>
                                   <div className="d-flex justify-content-around align-items-center">
+                                    <i
+                                      className="fa-solid fa-house-laptop cursor-pointer text-success"
+                                      onClick={() => {
+                                        addWorktoSection(course);
+                                      }}
+                                    ></i>
+                                    <Link
+                                      to={`/admin-works/${course.section_id}`}
+                                      className="fa-solid fa-laptop-file cursor-pointer text-primary"
+                                    ></Link>
                                     <i
                                       className="fa-solid fa-user cursor-pointer text-success"
                                       onClick={() => {
@@ -224,6 +248,7 @@ export default function MasterAdminSections() {
       </div>
       {updateModal}
       {addUserModal}
+      {addWorkModal}
     </>
   );
 }
