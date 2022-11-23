@@ -23,6 +23,7 @@ import AdminHome from "../admin/AdminHome";
 import MasterAdminSections from "../admin/MasterAdminSections";
 import MasterAdminSectionsStudents from "../admin/MasterAdminSectionsStudents";
 import MasterAdminWorks from "../admin/MasterAdminWorks";
+import TestComponent from "../../components/Footer/TestComponent";
 export const AppRouter = () => {
   let checking = false;
   let id: any;
@@ -96,6 +97,7 @@ export const AppRouter = () => {
             isAuthenticated={!!id}
           />
           <Route path="landing2" component={Landing} />
+          <Route path="/test" component={TestComponent} />
           <PrivateRoute path="/" component={AdminHome} isAuthenticated={!!id} />
           <Redirect to="/" />
         </Switch>
