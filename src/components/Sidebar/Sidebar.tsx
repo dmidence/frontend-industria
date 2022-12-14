@@ -50,10 +50,10 @@ export default function Sidebar({
   let userRoutes: any[] = [];
   if (user.type) {
     switch (user.type.toLocaleLowerCase()) {
-      case "estudiante":
+      case "alumno":
         userRoutes = [...adminRoutesStudent];
         break;
-      case "profesor":
+      case "maestro":
         userRoutes = [...adminRoutesTeacher];
         break;
       case "administrador":
@@ -95,7 +95,13 @@ export default function Sidebar({
           <SidebarItems label={label} icon={icon} path={path} key={index} />
         ))}
       </ul>
-      Rutas de Usuario Estudiante (Para Pruebas)
+      <hr />
+      <ul className="nav nav-pills flex-column mb-auto">
+        {userRoutes.map(({ label, icon, path }, index) => (
+          <SidebarItems label={label} icon={icon} path={path} key={index} />
+        ))}
+      </ul>
+      {/* Rutas de Usuario Estudiante (Para Pruebas)
       <ul className="nav nav-pills flex-column mb-auto">
         {adminRoutesStudent.map(({ label, icon, path }, index) => (
           <SidebarItems label={label} icon={icon} path={path} key={index} />
@@ -106,25 +112,22 @@ export default function Sidebar({
         {adminRoutesTeacher.map(({ label, icon, path }, index) => (
           <SidebarItems label={label} icon={icon} path={path} key={index} />
         ))}
-      </ul>
+      </ul> */}
       <hr />
       <div className="dropdown">
-        <a
-          href="#"
-          className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-          id="dropdownUser1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img
-            src="https://github.com/mdo.png"
-            alt=""
-            width="32"
-            height="32"
-            className="rounded-circle me-2"
-          />
-          <strong>Nombre de Usuario</strong>
-        </a>
+        <div className="d-flex justify-content-center align-items-center">
+          <a
+            href="#"
+            className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+            id="dropdownUser1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i className="fa-regular fa-user rounded-circle me-2"></i>
+
+            <strong>{user.name.split(" ")[0]}</strong>
+          </a>
+        </div>
         <ul
           className="dropdown-menu dropdown-menu-dark text-small shadow"
           aria-labelledby="dropdownUser1"

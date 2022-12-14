@@ -3,25 +3,11 @@ import logo from "../../assets/img/logo3.png";
 export default function FooterLanding() {
   return (
     <>
-      <footer className="w-100 bg-back main-footer m-0  bg-footer row text-white p-3 d-flex align-items-center">
+      <footer className="w-100 bg-back main-footer m-0  bg-footer row text-white p-3 d-flex ">
         <div className="col-3 footer-logo">
           <img className="img-fluid img-footer" src={logo} alt="" />
 
           <p className="text-center fs-3">Crescendus</p>
-        </div>
-        <div className="col-3 footer-section p-5 ">
-          <h6>
-            \<i className="fa-solid fa-link"> Crescendus</i>
-          </h6>
-          <br />
-          <p className=" fs-6">
-            {" "}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-            doloremque perspiciatis quidem! Nam magnam nulla sint voluptatum
-            exercitationem culpa voluptas numquam fugiat eius consequuntur, fuga
-            doloribus explicabo blanditiis eaque voluptatem.{" "}
-          </p>
-          <p className=" fs-6"></p>
         </div>
         <div className="col-3 footer-section p-5 ">
           <h6>
