@@ -37,7 +37,7 @@ body {
 }
 
 .main-footer {
-  height: 50vh;
+  height: 40vh;
   width: 100%;
   position: relative;
   bottom: 0;
@@ -127,7 +127,6 @@ body {
 }
 
 .custom-card2 {
-  height: 4v00px;
   cursor: pointer;
   text-align: center;
   transition: all 0.3s;
@@ -184,15 +183,15 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.logButton:hover {
-  transition: all 0.3s;
+.logButton:hover{
+  transition: all .3s;
 }
 
-.logButton:hover {
-  color: $detail-custom-color;
+.logButton:hover{
+  color:$detail-custom-color ;
 }
 
-.text-detail {
+.text-detail{
   font-size: 6rem;
-  color: $back-custom-color;
+  color: $back-custom-color ;
 }

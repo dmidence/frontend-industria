@@ -109,19 +109,22 @@ export default function Sidebar({
       </ul>
       <hr />
       <div className="dropdown">
-        <div className="d-flex justify-content-center align-items-center">
-          <a
-            href="#"
-            className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            id="dropdownUser1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <i className="fa-regular fa-user rounded-circle me-2"></i>
-
-            <strong>{user.name.split(" ")[0]}</strong>
-          </a>
-        </div>
+        <a
+          href="#"
+          className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+          id="dropdownUser1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="https://github.com/mdo.png"
+            alt=""
+            width="32"
+            height="32"
+            className="rounded-circle me-2"
+          />
+          <strong>Nombre de Usuario</strong>
+        </a>
         <ul
           className="dropdown-menu dropdown-menu-dark text-small shadow"
           aria-labelledby="dropdownUser1"

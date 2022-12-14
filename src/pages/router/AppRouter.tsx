@@ -22,8 +22,10 @@ import LandingUser from "../landingUser/LandingUser";
 import AdminHome from "../admin/AdminHome";
 import MasterAdminSections from "../admin/MasterAdminSections";
 import MasterAdminSectionsStudents from "../admin/MasterAdminSectionsStudents";
-import MasterAdminWorks from "../admin/MasterAdminWorks";
+import MasterAdminUnits from "../admin/MasterAdminUnits";
 import TestComponent from "../../components/Footer/TestComponent";
+import MasterAdminWorks from "../admin/MasterAdminWorks";
+import MasterAssigments from "../admin/MasterAssigments";
 export const AppRouter = () => {
   let checking = false;
   let id: any;
@@ -93,7 +95,17 @@ export const AppRouter = () => {
           />
           <PrivateRoute
             path="/admin-works/:idsection"
+            component={MasterAdminUnits}
+            isAuthenticated={!!id}
+          />
+          <PrivateRoute
+            path="/admin-uworks/:idUnit"
             component={MasterAdminWorks}
+            isAuthenticated={!!id}
+          />
+          <PrivateRoute
+            path="/assigment/:idassigment"
+            component={MasterAssigments}
             isAuthenticated={!!id}
           />
           <Route path="landing2" component={Landing} />

@@ -203,7 +203,7 @@ export default function MasterAdminSections() {
                       >
                         <ul className="pagination">
                           <>
-                            {Math.ceil(count / 10) != 1 && (
+                            {(count - 10) > 0&& (
                               <li
                                 className="page-item "
                                 onClick={() => goBack()}
@@ -222,7 +222,7 @@ export default function MasterAdminSections() {
                             goNext={goNext}
                           ></AppPagination>
                           <>
-                            {Math.ceil(count / 10) != 1 && (
+                            {(count - 10) > 0&& (
                               <li
                                 className="page-item "
                                 onClick={() => goNext()}

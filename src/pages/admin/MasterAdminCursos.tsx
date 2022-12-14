@@ -9,7 +9,6 @@ import AppPagination from "../../hooks/AppPagination";
 import CreateCourseForm from "../../forms/CreateCourseForm";
 import CreateSecionForm from "../../forms/CreateSecionForm";
 import { Link } from "react-router-dom";
-
 export default function MasterAdminAdmin() {
   let initialWidth = 80;
   const [fullView, setfullView] = useState<boolean>(false);
@@ -214,7 +213,7 @@ export default function MasterAdminAdmin() {
                       >
                         <ul className="pagination">
                           <>
-                            {Math.ceil(count / 10) != 1 && (
+                            {(count - 10) > 0 && (
                               <li
                                 className="page-item "
                                 onClick={() => goBack()}
@@ -233,7 +232,7 @@ export default function MasterAdminAdmin() {
                             goNext={goNext}
                           ></AppPagination>
                           <>
-                            {Math.ceil(count / 10) != 1 && (
+                            {(count - 10) > 0&& (
                               <li
                                 className="page-item "
                                 onClick={() => goNext()}
