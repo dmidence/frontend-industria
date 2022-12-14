@@ -1,50 +1,62 @@
-import React, { useState, useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-import axios from 'axios'
-import Swal from 'sweetalert2'
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function UploadWork() {
-  const [units, setunits] = useState([])
+  const [units, setunits] = useState([]);
   useEffect(() => {
     axios
       .get(
         import.meta.env.VITE_API_URL +
-          `/units?section=${localStorage.getItem('currentToUpdateSection')}`,
+          `/units?section=${localStorage.getItem("currentToUpdateSection")}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       )
       .then((res) => {
-        setunits(res.data.sections)
+        setunits(res.data.sections);
       })
-      .catch((err) => {})
-  }, [])
+      .catch((err) => {});
+  }, []);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm()
-  let token = JSON.parse(sessionStorage.getItem('appNameLogIn') || '').token
-  const [file, setfile] = useState<any>()
+  } = useForm();
+  let token = JSON.parse(sessionStorage.getItem("appNameLogIn") || "").token;
+  const [file, setfile] = useState<any>();
 
   const uploadFile = (e: any) => {
-    setValue('file', e.target.files[0])
-  }
+    setValue("file", e.target.files[0]);
+  };
 
   const handleCreateCourse = (data: any) => {
     try {
-      let auxDateS = data.startDate.split('-')
-      let auxDateE = data.endDate.split('-')
-      console.log(auxDateE)
-      data.startDate = `${auxDateS[1].toString() +'-'+ auxDateS[2].toString() +'-'+ auxDateS[0].toString()}`
-      data.endDate = `${auxDateE[1].toString() +'-'+ auxDateE[2].toString() +'-'+ auxDateE[0].toString()}`
-      data.unit = parseInt(data.unit) 
+      let auxDateS = data.startDate.split("-");
+      let auxDateE = data.endDate.split("-");
+      console.log(auxDateE);
+      data.startDate = `${
+        auxDateS[1].toString() +
+        "-" +
+        auxDateS[2].toString() +
+        "-" +
+        auxDateS[0].toString()
+      }`;
+      data.endDate = `${
+        auxDateE[1].toString() +
+        "-" +
+        auxDateE[2].toString() +
+        "-" +
+        auxDateE[0].toString()
+      }`;
+      data.unit = parseInt(data.unit);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
     axios
       .post(
@@ -82,7 +94,7 @@ export default function UploadWork() {
         <input
           className="form-control"
           type="text"
-          {...register('title', { required: true })}
+          {...register("title", { required: true })}
         />
         {errors.title && (
           <span className="text-danger">El Titulo es obligatorio</span>
@@ -93,7 +105,7 @@ export default function UploadWork() {
         <input
           className="form-control"
           type="text"
-          {...register('description', { required: true })}
+          {...register("description", { required: true })}
         />
       </div>
       {errors.description && (
@@ -104,7 +116,7 @@ export default function UploadWork() {
         <input
           className="form-control"
           type="date"
-          {...register('startDate', { required: true })}
+          {...register("startDate", { required: true })}
         />
       </div>
       {errors.starDate && (
@@ -115,7 +127,7 @@ export default function UploadWork() {
         <input
           className="form-control"
           type="date"
-          {...register('endDate', { required: true })}
+          {...register("endDate", { required: true })}
         />
       </div>
       {errors.endDate && (
@@ -127,12 +139,14 @@ export default function UploadWork() {
         <label htmlFor="title">Unidad</label>
         <select
           className="form-control"
-          {...register('unit', { required: true })}
-        >            <option value={``} selected disabled>Selecciona una opcion</option>
-
+          {...register("unit", { required: true })}
+        >
+          {" "}
+          <option value={``} selected disabled>
+            Selecciona una opcion
+          </option>
           {units.map((unit: any) => (
             <option value={`${unit.unit_id}`}>{unit.title}</option>
-            
           ))}
         </select>
       </div>
@@ -153,5 +167,5 @@ export default function UploadWork() {
       <br />
       <input type="submit" className="btn btn-success" />
     </form>
-  )
+  );
 }
