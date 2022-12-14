@@ -6,10 +6,13 @@ import useModal from "../../components/Modal/useModal";
 import Swal from "sweetalert2";
 import axios from "axios";
 import AppPagination from "../../hooks/AppPagination";
-import UpdateUSerType from "../../forms/UpdateUSerType";
+import CreateSecionForm from "../../forms/CreateSecionForm";
+import CreateUserInSection from "../../forms/CreateUserInSection";
+import UploadWork from "../../forms/UploadWork";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-export default function MasterAdminSectionsStudents() {
+export default function MasterAdminUnits() {
   let initialWidth = 80;
   const [fullView, setfullView] = useState<boolean>(false);
   const [width, setwidth] = useState<number>(initialWidth);
@@ -23,30 +26,25 @@ export default function MasterAdminSectionsStudents() {
     }
   };
 
-  const [users, setUsers] = useState<any>([]);
+  const [sections, setSections] = useState<any>([]);
   const [count, setCount] = useState<any>([]);
   const [loading, setLoading] = useState<any>([]);
 
   let token = JSON.parse(sessionStorage.getItem("appNameLogIn") || "").token;
   const [skip, setskip] = useState(0);
-  const [search, setSearch] = useState<any>("");
-  let { id } = useParams<any>();
+  let params = useParams<any>();
   useEffect(() => {
     setLoading(true);
     axios
-      .get(import.meta.env.VITE_API_URL + "/sections/members", {
+      .get(import.meta.env.VITE_API_URL + "/units?section="+params.idsection
+      , {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        params: {
-          skip: skip,
-          search: search,
-          section: id,
-        },
       })
       .then((res) => {
-        console.log(res.data.members);
-        setUsers(res.data.members);
+        console.log(res)
+        setSections(res.data.sections);
         setCount(res.data.count);
         setLoading(false);
       })
@@ -55,33 +53,6 @@ export default function MasterAdminSectionsStudents() {
         setLoading(false);
       });
   }, [skip]);
-  const handleInputChange = (e: any) => {
-    setSearch(e.target.value);
-  };
-  let wordSearch = () => {
-    setskip(0);
-    setpageNumber(1);
-    setLoading(true);
-    axios
-      .get(import.meta.env.VITE_API_URL + "/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          skip: 0,
-          search: search,
-        },
-      })
-      .then((res) => {
-        setUsers(res.data.members);
-        setCount(res.data.count);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  };
 
   const [pageNumber, setpageNumber] = useState(1);
 
@@ -97,13 +68,8 @@ export default function MasterAdminSectionsStudents() {
 
   const goToSpecific = (currentPageNumber: number) => {
     setpageNumber(currentPageNumber);
-    setskip(skip * 10 - 10);
+    setskip(currentPageNumber * 10 - 10);
   };
-
-  let { modal: updateModal, openModal: updateCreateModal } = useModal({
-    title: "Editar Tipo de Usuario",
-    body: <UpdateUSerType></UpdateUSerType>,
-  });
 
   return (
     <>
@@ -120,30 +86,12 @@ export default function MasterAdminSectionsStudents() {
               style={{ minHeight: "85vh" }}
             >
               <div className="d-flex justify-content-between align-items-center">
-                <h2 className="text-secondary">Usuarios</h2>
-                {/* <div>
-                  <span className="px-1">
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => {
-                        openCreateModal()
-                      }}
-                    >
-                      <i className="fa-solid fa-plus"></i>
-                    </button>
-                  </span>
-                </div> */}
+                <h2 className="text-secondary">Unidades</h2>
+
                 <div className="d-flex">
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={handleInputChange}
-                  />
-                  <span className="px-1">
-                    <button className="btn btn-primary" onClick={wordSearch}>
-                      <i className="fa-solid fa-search"></i>
-                    </button>
-                  </span>
+                  <div>
+                    <span className="px-1"></span>
+                  </div>
                 </div>
               </div>
               <hr />
@@ -151,25 +99,41 @@ export default function MasterAdminSectionsStudents() {
                 <h3>Cargando...</h3>
               ) : (
                 <>
-                  {!!users && users.length > 0 ? (
+                  {!!sections && sections.length > 0 ? (
                     <>
                       <table className="table table-hover ">
                         <thead className="bg-dark text-white">
                           <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Correo</th>
+                            <th scope="col">Nombre de la Seccion</th>
                             <th scope="col">Fecha de Creacion</th>
-                            <th scope="col">Tipo</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Opciones</th>
                           </tr>
                         </thead>
                         <tbody>
                           <>
-                            {users.map((user: any) => (
+                            {sections.map((course: any) => (
                               <tr>
-                                <th scope="row">{user.name}</th>
-                                <td>{user.email}</td>
-                                <td>{user.create_at.substring(0, 10)}</td>
-                                <td>{user.type}</td>
+                                <th scope="row">{course.title}</th>
+                                <td>{course.create_at.substring(0, 10)}</td>
+                                <td>
+                                  {course.active
+                                    ? "Habilitado"
+                                    : "Desabilitado"}
+                                </td>
+                                <td>
+                                  <div className="d-flex justify-content-around align-items-center">
+                                    <Link
+                                      className="fa-solid fa-house-laptop cursor-pointer text-success"
+                                      to={`/admin-uworks/${course.unit_id}`}
+                                    ></Link>
+                                    
+                                    {/* <i
+                                      className="fa-solid fa-trash cursor-pointer text-danger"
+                                      onClick={() => {}}
+                                    ></i> */}
+                                  </div>
+                                </td>
                               </tr>
                             ))}
                           </>
@@ -224,7 +188,6 @@ export default function MasterAdminSectionsStudents() {
           <AdminFooter></AdminFooter>
         </div>
       </div>
-      {updateModal}
     </>
   );
 }

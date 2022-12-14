@@ -195,7 +195,7 @@ export default function CreateUserInSection() {
               >
                 <ul className="pagination">
                   <>
-                    {Math.ceil(count / 10) != 1 && (
+                    {(count - 10) > 0&& (
                       <li className="page-item " onClick={() => goBack()}>
                         <a className="page-link">&laquo;</a>
                       </li>
@@ -211,7 +211,7 @@ export default function CreateUserInSection() {
                     goNext={goNext}
                   ></AppPagination>
                   <>
-                    {Math.ceil(count / 10) != 1 && (
+                    {(count - 10) > 0&& (
                       <li className="page-item " onClick={() => goNext()}>
                         <a className="page-link">&raquo;</a>
                       </li>

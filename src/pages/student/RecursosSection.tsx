@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import useModal from "../../components/Modal/useModal";
 
 export default function RecursosSection({ recursos }: { recursos: any }) {
+
+  const [homework, sethomework] = useState()
+  let { modal: detailModal, openModal: opendetailModal } = useModal({
+    title: 'Detalles de Tarea',
+    body: <ModalData recurso={homework}></ModalData>,
+  })
+const handleModalView =(recurso:any)=>{
+  sethomework(recurso)
+  opendetailModal()
+}
   return (
     <>
       <h6>Asignaciones:</h6>
@@ -9,11 +20,21 @@ export default function RecursosSection({ recursos }: { recursos: any }) {
         style={{ minHeight: "50vh" }}
       >
         {recursos.map((recurso: any) => (
-          <strong>
-            <a href="">{`Recurso ${recurso}`}</a>
+          <strong onClick={()=> handleModalView(recurso)}>
+            <a >{`Recurso ${recurso.title}`}</a>
           </strong>
         ))}
       </section>
+      {detailModal}
     </>
   );
 }
+
+
+export function ModalData(homeWork:any) {
+  return (
+    <div>{JSON.stringify(homeWork)}</div>
+  )
+}
+
+

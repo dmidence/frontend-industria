@@ -1,26 +1,10 @@
+
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
-export default function UploadWork() {
-  const [units, setunits] = useState([])
-  useEffect(() => {
-    axios
-      .get(
-        import.meta.env.VITE_API_URL +
-          `/units?section=${localStorage.getItem('currentToUpdateSection')}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      )
-      .then((res) => {
-        setunits(res.data.sections)
-      })
-      .catch((err) => {})
-  }, [])
+export default function UploadWorkUser() {
 
   const {
     register,
@@ -28,7 +12,8 @@ export default function UploadWork() {
     formState: { errors },
     setValue,
   } = useForm()
-  let token = JSON.parse(sessionStorage.getItem('appNameLogIn') || '').token
+
+  let token = JSON.parse(sessionStorage.getItem('currentAsignment') || '').token
   const [file, setfile] = useState<any>()
 
   const uploadFile = (e: any) => {

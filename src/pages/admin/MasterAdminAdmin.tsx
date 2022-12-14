@@ -43,6 +43,7 @@ export default function MasterAdminAdmin() {
         },
       })
       .then((res) => {
+        console.log(res.data.users);
         setUsers(res.data.users);
         setCount(res.data.count);
         setLoading(false);
@@ -94,7 +95,7 @@ export default function MasterAdminAdmin() {
 
   const goToSpecific = (currentPageNumber: number) => {
     setpageNumber(currentPageNumber);
-    setskip(currentPageNumber * 10 - 10);
+    setskip(skip * 10 - 10);
   };
 
   let { modal: updateModal, openModal: updateCreateModal } = useModal({
@@ -196,7 +197,7 @@ export default function MasterAdminAdmin() {
                       >
                         <ul className="pagination">
                           <>
-                            {Math.ceil(count / 10) != 1 && (
+                            {(count - 10) > 0 && (
                               <li
                                 className="page-item "
                                 onClick={() => goBack()}
@@ -215,7 +216,7 @@ export default function MasterAdminAdmin() {
                             goNext={goNext}
                           ></AppPagination>
                           <>
-                            {Math.ceil(count / 10) != 1 && (
+                            {(count - 10) > 0&& (
                               <li
                                 className="page-item "
                                 onClick={() => goNext()}
