@@ -52,13 +52,7 @@ export default function AdminNavbar({
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <img
-                  src="https://github.com/mdo.png"
-                  alt=""
-                  width="32"
-                  height="32"
-                  className="rounded-circle me-2"
-                />
+                <i className="fa-regular fa-user rounded-circle me-2 text-dark"></i>
                 <strong className="text-dark">{user.name}</strong>
               </a>
               <ul

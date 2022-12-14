@@ -9,6 +9,7 @@ import AppPagination from "../../hooks/AppPagination";
 import CreateCourseForm from "../../forms/CreateCourseForm";
 import CreateSecionForm from "../../forms/CreateSecionForm";
 import { Link } from "react-router-dom";
+
 export default function MasterAdminAdmin() {
   let initialWidth = 80;
   const [fullView, setfullView] = useState<boolean>(false);

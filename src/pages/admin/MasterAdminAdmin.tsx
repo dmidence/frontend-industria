@@ -43,7 +43,6 @@ export default function MasterAdminAdmin() {
         },
       })
       .then((res) => {
-        console.log(res.data.users);
         setUsers(res.data.users);
         setCount(res.data.count);
         setLoading(false);
@@ -95,7 +94,7 @@ export default function MasterAdminAdmin() {
 
   const goToSpecific = (currentPageNumber: number) => {
     setpageNumber(currentPageNumber);
-    setskip(skip * 10 - 10);
+    setskip(currentPageNumber * 10 - 10);
   };
 
   let { modal: updateModal, openModal: updateCreateModal } = useModal({
